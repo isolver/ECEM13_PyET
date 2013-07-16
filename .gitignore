@@ -1,4 +1,5 @@
 *.py[cod]
+*_lastrun.py
 
 # C extensions
 *.so
