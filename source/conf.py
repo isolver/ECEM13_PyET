@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 #
-# P4N build configuration file,
+# Py4ET build configuration file,
 #
 # This file is execfile()d with the current directory set to its containing dir.
 #
@@ -38,8 +38,8 @@ source_suffix = '.rst'
 master_doc = 'index'
 
 # General information about the project.
-project = u'P4N - Python for Neuroscience'
-copyright = u'2013, Jonathan Peirce'
+project = u'Py4ET - Python Open Source Tools in Eye Movement Research'
+copyright = u'2013, Jonathan Peirce and Sol Simpson'
 
 # The version info for the project you're documenting, acts as replacement for
 # |version| and |release|, also used in various other places throughout the
@@ -159,7 +159,7 @@ html_show_sourcelink = False
 #html_file_suffix = ''
 
 # Output file base name for HTML help builder.
-htmlhelp_basename = 'P4Ndoc'
+htmlhelp_basename = 'Py4ETdoc'
 
 
 # -- Options for LaTeX output --------------------------------------------------
@@ -173,8 +173,8 @@ latex_paper_size = 'a4'
 # Grouping the document tree into LaTeX files. List of tuples
 # (source start file, target name, title, author, documentclass [howto/manual]).
 latex_documents = [
-  ('index', 'P4N.tex', u'P4N - Python for Neuroscience',
-   u'Jonathan Peirce', 'manual'),
+  ('index')#, 'P4N.tex', u'P4N - Python for Neuroscience',
+   #u'Jonathan Peirce', 'manual'),
 ]
 
 latex_elements = { 'classoptions': ',openany,oneside', 'babel' : '\\usepackage[english]{babel}' }

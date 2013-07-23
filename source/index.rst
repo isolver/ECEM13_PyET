@@ -1,17 +1,11 @@
-.. _P4N:
+.. _P4ET:
 
-P4N - Python for Neuroscience 2013
-=========================================================
+Py4ET 2013 - Python Open Source Tools in Eye Movement Research 
+===============================================================
 
-.. only:: html
-
-    This material can also be downloaded as a `pdf file <P4N.pdf>`_. But it will continue to be updated as the workshop continues, so come back each day for the updated version.
-    
 .. toctree::
     :maxdepth: 2
 
     schedule
-    day1/index
-    day2/index
-    day3/index
-
+    Presentation Material <content/start.rst>
+    workshop_materials
