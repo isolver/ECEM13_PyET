@@ -37,7 +37,7 @@
       <CodeComponent name="locations">
         <Param name="Begin Experiment" val="" valType="extendedCode" updates="constant"/>
         <Param name="name" val="locations" valType="code" updates="None"/>
-        <Param name="Each Frame" val="maskPos = myMouse.getPos()&#10;" valType="extendedCode" updates="constant"/>
+        <Param name="Each Frame" val="maskPos = myMouse.getPos()&#10;print 'pos', maskPos" valType="extendedCode" updates="constant"/>
         <Param name="Begin Routine" val="targetX = random()-0.5&#10;targetY = random()-0.5&#10;distX = random([nDistractors])-0.5&#10;distY = random([nDistractors])-0.5" valType="extendedCode" updates="constant"/>
         <Param name="End Routine" val="trials.addData('targetX',targetX)&#10;trials.addData('targetY',targetY)" valType="extendedCode" updates="constant"/>
         <Param name="End Experiment" val="" valType="extendedCode" updates="constant"/>
@@ -90,29 +90,18 @@
         <Param name="End Routine" val="" valType="extendedCode" updates="constant"/>
         <Param name="End Experiment" val="" valType="extendedCode" updates="constant"/>
       </CodeComponent>
-      <GratingComponent name="fixationMask">
-        <Param name="opacity" val="1" valType="code" updates="constant"/>
-        <Param name="tex" val="sin" valType="str" updates="constant"/>
-        <Param name="colorSpace" val="rgb" valType="str" updates="constant"/>
-        <Param name="name" val="fixationMask" valType="code" updates="constant"/>
-        <Param name="color" val="$[0.2, 0.2, 0.2]" valType="str" updates="constant"/>
-        <Param name="stopVal" val="10.0" valType="code" updates="constant"/>
+      <ApertureComponent name="periphMask">
+        <Param name="name" val="periphMask" valType="code" updates="constant"/>
+        <Param name="stopVal" val="10" valType="code" updates="constant"/>
         <Param name="durationEstim" val="" valType="code" updates="None"/>
-        <Param name="mask" val="circle" valType="str" updates="constant"/>
         <Param name="pos" val="maskPos" valType="code" updates="set every frame"/>
-        <Param name="interpolate" val="linear" valType="str" updates="constant"/>
         <Param name="startEstim" val="" valType="code" updates="None"/>
-        <Param name="units" val="from exp settings" valType="str" updates="None"/>
-        <Param name="texture resolution" val="128" valType="code" updates="constant"/>
-        <Param name="phase" val="0.0" valType="code" updates="constant"/>
+        <Param name="units" val="norm" valType="str" updates="None"/>
         <Param name="startType" val="time (s)" valType="str" updates="None"/>
-        <Param name="ori" val="0" valType="code" updates="constant"/>
         <Param name="stopType" val="duration (s)" valType="str" updates="None"/>
         <Param name="startVal" val="0.5" valType="code" updates="None"/>
-        <Param name="sf" val="0" valType="code" updates="constant"/>
-        <Param name="advancedParams"/>
         <Param name="size" val="0.2" valType="code" updates="constant"/>
-      </GratingComponent>
+      </ApertureComponent>
     </Routine>
   </Routines>
   <Flow>
