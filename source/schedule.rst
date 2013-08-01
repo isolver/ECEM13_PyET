@@ -13,9 +13,9 @@ AM: 9 - 12 pm: Python, Psychopy, and the ioHub Common Eye Tracker Interface
   
   * 11:20 - 12:00pm: **PsychoPy.ioHub Event Monitoring Framework:**
 
-    * Overview of Supported Devices.
-    * Review of PsychoPy.ioHub Common Eye Tracking Interface.
-    * Intro. to the ioDataStore and HDF5 File Format.
+    * A. Overview of Supported Devices.
+    * A.2. Review of PsychoPy.ioHub Common Eye Tracking Interface.
+    * B. Intro. to the ioDataStore and HDF5 File Format.
 
 LUNCH: 12 - 1 pm
 ~~~~~~~~~~~~~~~~~
@@ -28,19 +28,17 @@ PM: 1pm - 3:30 pm: Diving into Eye Tracking with Python
     * Adding to a Coder Script.
     * Testing the Projects Using an Eye Tracker.
 
-  * 1:40-2:30pm: **Processing Recorded Eye Data**
+  * 1:40 - 2:40pm: **Visualization of Select Eye Data**
 
-    * Numpy and SciPy Overview.
-    * Filtering Data.
-    * Parsing Eye Position Data into Eye Events.
+    * D. Plotting Eye Position Traces.
+    * D.2 Scan Path Plotting
+    * D.3. Eye Position Animation
+    * D.4. Fixation Map - Heat Map Creation
 
-  * 2:30 - 3:30pm: **Visualization of Select Eye Data**
+    * 2:40-3:30pm: **Processing Recorded Eye Data**
 
-    * Matplotlib Overview.
-    * Plotting Single Eye Position Traces.
-    * Plotting Sets of Eye Position Traces.
-    * Creating Saccadic RT and Dwell Time Histograms.
-    * Creating Heatmaps.
+    * E. Pixels -> Visual Angles, Filtering Data, and Velocity, Accelleration Calc..
+    * F. Parsing Eye Position Data into Eye Events.
 
 PM: 3:30 - 4:00pm: Online Python Resources and Q&A
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    
