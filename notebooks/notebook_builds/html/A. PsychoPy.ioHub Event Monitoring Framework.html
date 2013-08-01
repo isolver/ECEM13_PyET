@@ -1695,7 +1695,7 @@ init_mathjax();
 <div class="cell border-box-sizing code_cell vbox">
 <div class="input hbox">
 <div class="prompt input_prompt">
-In&nbsp;[5]:
+In&nbsp;[40]:
 </div>
 <div class="input_area box-flex1">
 <div class="highlight"><pre><span class="kn">from</span> <span class="nn">executeNotebook</span> <span class="kn">import</span> <span class="n">execute_notebook</span>
@@ -1711,7 +1711,7 @@ In&nbsp;[5]:
 
 
 <div class="hbox output_area"><div class="prompt output_prompt">
-    Out[5]:</div>
+    Out[40]:</div>
 <div class="box-flex1 output_subarea output_pyout">
 
 
@@ -1723,7 +1723,7 @@ In&nbsp;[5]:
 </div>
 
 <div class="hbox output_area"><div class="prompt output_prompt">
-    Out[5]:</div>
+    Out[40]:</div>
 <div class="box-flex1 output_subarea output_pyout">
 
 
@@ -1735,7 +1735,7 @@ In&nbsp;[5]:
 </div>
 
 <div class="hbox output_area"><div class="prompt output_prompt">
-    Out[5]:</div>
+    Out[40]:</div>
 <div class="box-flex1 output_subarea output_pyout">
 
 
@@ -1747,7 +1747,7 @@ In&nbsp;[5]:
 </div>
 
 <div class="hbox output_area"><div class="prompt output_prompt">
-    Out[5]:</div>
+    Out[40]:</div>
 <div class="box-flex1 output_subarea output_pyout">
 
 
@@ -1759,7 +1759,7 @@ In&nbsp;[5]:
 </div>
 
 <div class="hbox output_area"><div class="prompt output_prompt">
-    Out[5]:</div>
+    Out[40]:</div>
 <div class="box-flex1 output_subarea output_pyout">
 
 
@@ -1771,7 +1771,7 @@ In&nbsp;[5]:
 </div>
 
 <div class="hbox output_area"><div class="prompt output_prompt">
-    Out[5]:</div>
+    Out[40]:</div>
 <div class="box-flex1 output_subarea output_pyout">
 
 
@@ -2603,7 +2603,7 @@ LCbm/wP6GEPXYAC7IAAAAABJRU5ErkJggg==
 </div>
 <div class="text_cell_render border-box-sizing rendered_html">
 <hr />
-<h1 id="useful-links">Useful Links:</h1>
+<h1 id="useful-psychopy.iohub-links">Useful PsychoPy.ioHub Links:</h1>
 <h3 id="installation">Installation</h3>
 <p>Via <a href="https://code.google.com/p/psychopy/downloads/detail?name=PsychoPy-1.77.02-py2.7.egg&amp;can=2&amp;q=">PsychoPy Package</a> or the PsychoPy Python Distributions for <a href="https://code.google.com/p/psychopy/downloads/detail?name=StandalonePsychoPy-1.77.00-win32.exe&amp;can=2&amp;q=">Windows</a> and <a href="https://code.google.com/p/psychopy/downloads/detail?name=StandalonePsychoPy-1.77.00rc1-OSX.dmg&amp;can=2&amp;q=">OS X</a>.</p>
 <h3 id="documentation">Documentation</h3>
@@ -2618,7 +2618,7 @@ LCbm/wP6GEPXYAC7IAAAAABJRU5ErkJggg==
 <hr />
 <h1 id="high-level-iohub-api-review">High Level ioHub API Review</h1>
 <h3 id="starting-the-iohub-server-process">Starting the ioHub Server Process</h3>
-<p>There are two ways to create a psychopy experiment and have it start the iohub process for use during the experiment runtime. Both menthods ultimately give you access to an instance of the [ioHubConnection Class)[http://www.isolver-solutions.com/iohubdocs/iohub/api_and_manual/iohub_process/getting_connected.html#the-iohubconnection-class] for communication and control of the iohub framework:</p>
+<p>There are two ways to create a psychopy experiment and have it start the iohub process for use during the experiment runtime. Both menthods ultimately give you access to an instance of the <a href="http://www.isolver-solutions.com/iohubdocs/iohub/api_and_manual/iohub_process/getting_connected.html#the-iohubconnection-class">ioHubConnection Class</a> for communication and control of the iohub framework:</p>
 <ol style="list-style-type: decimal">
 <li>Use the <a href="http://www.isolver-solutions.com/iohubdocs/iohub/api_and_manual/iohub_process/launchHubServer.html#the-launchhubserver-function]%20function.">psychopy.iohub.launchHubServer()</a></li>
 <li>Create a subclass of the <a href="http://www.isolver-solutions.com/iohubdocs/iohub/api_and_manual/iohub_process/ioHubExperimentRuntime.html#the-iohubexperimentruntime-class">psychopy.iohub.client.ioHubExperimentRuntime</a>, implementing the classes run() method for your experiment's starting python code.</li>
@@ -3929,16 +3929,882 @@ An exception has occurred, use %tb to see the full traceback.
 <div class="text_cell_render border-box-sizing rendered_html">
 <hr />
 <h3 id="devices">Devices</h3>
-<p>TBC</p>
+<p>In ioHub, a Device can be Physical or Virtual. Physical Devices represent a piece of measurement hardware that generates events. Virtual Devices are purely software based, but can also generate events of interest.</p>
+<p>Examples of <em>Physical</em> ioHub Devices:</p>
+<ul>
+<li>Keyboard</li>
+<li>Mouse</li>
+<li>Gamepad</li>
+<li>Eye Tracker</li>
+</ul>
+<p>Examples of <em>Virtual</em> ioHub Devices:</p>
+<ul>
+<li>Experiment</li>
+<li>Event Publisher</li>
+<li>Remote Event Subscriber</li>
+</ul>
+<p>A list of all currently supported device types, and associated event types each device can generate, can be found <a href="http://www.isolver-solutions.com/iohubdocs/iohub/api_and_manual/devices.html#available-iohub-device-and-deviceevent-types">here</a>.</p>
+<p>As seen in earlier code, iohub devices are accessed from within the psychopy experiment script via the <a href="http://www.isolver-solutions.com/iohubdocs/iohub/api_and_manual/iohub_process/getting_connected.html#the-iohubconnection-class">ioHubConnection</a> class .devices attribute. Notes:</p>
+<ul>
+<li>The .devices attribute is dynamically created when the experiment starts.</li>
+<li>The .devices attribute is itself a class, providing <em>dot name</em> access to the iohub devices that were enabled for the experiment. Devices that are not enabled for the experiment will not appear in the devices list.</li>
+<li>The devices attribute name for a device is equal to the device label specified in the device configuation file (or the default name is used).</li>
+<li>To programatically check if a device has been enabled from within the experiment script, the deviceByLabel dict attribute of the ioHubConnection class can be used. This is useful so that an experiment can conditionally call a specific device method only if the device is actually enabled.</li>
+<li>The list of methods that can be called for each device can be accessed within the experiment script.</li>
+</ul>
+<h3 id="device-access-examples">Device Access Examples</h3>
 </div>
 <div class="cell border-box-sizing code_cell vbox">
 <div class="input hbox">
 <div class="prompt input_prompt">
-In&nbsp;[12]:
+In&nbsp;[51]:
 </div>
 <div class="input_area box-flex1">
-<div class="highlight"><pre>
+<div class="highlight"><pre><span class="k">def</span> <span class="nf">deviceAccessTest</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="n">io</span><span class="o">=</span><span class="n">psychopy</span><span class="o">.</span><span class="n">iohub</span><span class="o">.</span><span class="n">launchHubServer</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
+    <span class="n">display</span><span class="p">(</span><span class="s">&quot;** List of Available ioHub Devices:&quot;</span><span class="p">)</span>
+    
+    <span class="c"># Display each available iohub device name and associated device class </span>
+    <span class="k">for</span> <span class="n">device_name</span><span class="p">,</span><span class="n">iodevice</span> <span class="ow">in</span> <span class="n">io</span><span class="o">.</span><span class="n">deviceByLabel</span><span class="o">.</span><span class="n">iteritems</span><span class="p">():</span>
+        <span class="n">display</span><span class="p">(</span><span class="s">&quot;{device_name} : {iodevice}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">device_name</span><span class="o">=</span><span class="n">device_name</span><span class="p">,</span><span class="n">iodevice</span><span class="o">=</span><span class="n">iodevice</span><span class="p">))</span>
+        
+    <span class="c"># Check if a device with a given name is available:</span>
+    
+    <span class="n">keyboard</span><span class="o">=</span><span class="n">io</span><span class="o">.</span><span class="n">deviceByLabel</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;keyboard&#39;</span><span class="p">)</span>
+    <span class="n">analog_input</span><span class="o">=</span><span class="n">io</span><span class="o">.</span><span class="n">deviceByLabel</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;ain&#39;</span><span class="p">)</span>
+    
+    <span class="n">display</span><span class="p">(</span><span class="s">&#39;** Checking for device availability:&#39;</span><span class="p">)</span>
+    <span class="n">display</span><span class="p">(</span><span class="s">&quot;Keyboard Device Enabled (should == True): {0})&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">keyboard</span><span class="o">!=</span><span class="bp">None</span><span class="p">))</span>
+    <span class="n">display</span><span class="p">(</span><span class="s">&quot;Analog Input Device Enabled (should == False): {0})&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">analog_input</span><span class="o">!=</span><span class="bp">None</span><span class="p">))</span>
+
+    <span class="c"># It is often useful to *get rid of the dots* for devices that are used frequently</span>
+    <span class="c"># through out the experiment scipt.</span>
+    
+    <span class="n">keyboard</span> <span class="o">=</span> <span class="n">io</span><span class="o">.</span><span class="n">devices</span><span class="o">.</span><span class="n">keyboard</span>
+    <span class="n">mouse</span> <span class="o">=</span> <span class="n">io</span><span class="o">.</span><span class="n">devices</span><span class="o">.</span><span class="n">mouse</span>
+    
+    <span class="n">display</span><span class="p">(</span><span class="s">&quot;** Checking device instance equality:&quot;</span><span class="p">)</span>
+    <span class="n">display</span><span class="p">(</span><span class="s">&quot;keyboard == io.deviceByLabel.get(&#39;keyboard&#39;): {0}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">keyboard</span> <span class="o">==</span> <span class="n">io</span><span class="o">.</span><span class="n">deviceByLabel</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;keyboard&#39;</span><span class="p">)))</span>
+    <span class="n">display</span><span class="p">(</span><span class="s">&quot;mouse == io.devices.mouse): {0}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">mouse</span> <span class="o">==</span> <span class="n">io</span><span class="o">.</span><span class="n">devices</span><span class="o">.</span><span class="n">mouse</span><span class="p">))</span>
+    <span class="n">io</span><span class="o">.</span><span class="n">quit</span><span class="p">()</span> 
+
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="n">deviceAccessTest</span><span class="p">()</span>      
 </pre></div>
+
+</div>
+</div>
+
+<div class="vbox output_wrapper">
+<div class="output vbox">
+
+
+<div class="hbox output_area"><div class="prompt"></div>
+<div class="box-flex1 output_subarea output_display_data">
+
+
+<pre>
+&apos;** List of Available ioHub Devices:&apos;
+</pre>
+
+</div>
+</div>
+
+<div class="hbox output_area"><div class="prompt"></div>
+<div class="box-flex1 output_subarea output_display_data">
+
+
+<pre>
+&apos;experiment : &lt;psychopy.iohub.client.ioHubDeviceView object at 0x11192C30&gt;&apos;
+</pre>
+
+</div>
+</div>
+
+<div class="hbox output_area"><div class="prompt"></div>
+<div class="box-flex1 output_subarea output_display_data">
+
+
+<pre>
+&apos;mouse : &lt;psychopy.iohub.client.ioHubDeviceView object at 0x11192B10&gt;&apos;
+</pre>
+
+</div>
+</div>
+
+<div class="hbox output_area"><div class="prompt"></div>
+<div class="box-flex1 output_subarea output_display_data">
+
+
+<pre>
+&apos;display : &lt;psychopy.iohub.client.ioHubDeviceView object at 0x111923F0&gt;&apos;
+</pre>
+
+</div>
+</div>
+
+<div class="hbox output_area"><div class="prompt"></div>
+<div class="box-flex1 output_subarea output_display_data">
+
+
+<pre>
+&apos;keyboard : &lt;psychopy.iohub.client.ioHubDeviceView object at 0x08E79430&gt;&apos;
+</pre>
+
+</div>
+</div>
+
+<div class="hbox output_area"><div class="prompt"></div>
+<div class="box-flex1 output_subarea output_display_data">
+
+
+<pre>
+&apos;** Checking for device availability:&apos;
+</pre>
+
+</div>
+</div>
+
+<div class="hbox output_area"><div class="prompt"></div>
+<div class="box-flex1 output_subarea output_display_data">
+
+
+<pre>
+&apos;Keyboard Device Enabled (should == True): True)&apos;
+</pre>
+
+</div>
+</div>
+
+<div class="hbox output_area"><div class="prompt"></div>
+<div class="box-flex1 output_subarea output_display_data">
+
+
+<pre>
+&apos;Analog Input Device Enabled (should == False): False)&apos;
+</pre>
+
+</div>
+</div>
+
+<div class="hbox output_area"><div class="prompt"></div>
+<div class="box-flex1 output_subarea output_display_data">
+
+
+<pre>
+&apos;** Checking device instance equality:&apos;
+</pre>
+
+</div>
+</div>
+
+<div class="hbox output_area"><div class="prompt"></div>
+<div class="box-flex1 output_subarea output_display_data">
+
+
+<pre>
+&quot;keyboard == io.deviceByLabel.get(&apos;keyboard&apos;): True&quot;
+</pre>
+
+</div>
+</div>
+
+<div class="hbox output_area"><div class="prompt"></div>
+<div class="box-flex1 output_subarea output_display_data">
+
+
+<pre>
+&apos;mouse == io.devices.mouse): True&apos;
+</pre>
+
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Notice that the device classes handed to you by ioHubConnection are of type psychopy.iohub.client.ioHubDeviceView. This is the PsychoPy Processes representation of the actual ioHub Device class instances running on the seperate ioHub Server Process.</p>
+<p>Notes:</p>
+<ul>
+<li><p>For each enabled ioHub Device running during the experiment, their is:</p>
+<ul>
+<li>One psychopy.iohub.client.ioHubDeviceView instance created by the Experiment Process</li>
+<li>One iohub.devices.[DeviceClassName] instance created in the ioHub Server Process</li>
+</ul></li>
+<li><p>Any time an the experiment script calls a method of an ioHub Device:</p>
+<ol style="list-style-type: decimal">
+<li>An IPC call is made to the associated ioHub Device on the ioHub Server Process (the request)</li>
+<li>Then the ioHub Process sends back the requested information to the Experiment Process (the response)</li>
+</ol></li>
+<li><p>While the IPC request-response delay is very short ( &lt; 0.5 msec on average ), it is still important to keep it in mind. When possible adopt a <em>fetch and reuse</em> approach to reading device values repeatedly within a display refresh cycle. For example:</p>
+<pre><code>def bad_iohub_code():
+    &quot;&quot;&quot;
+    Silly sudo code example of repeatedly calling a method 
+    of an ioHub Device when not necessary. 
+    **BAD** : Would take approx. getPosition() call delay * 5 (msec) to execute.
+    Assuming a 0.25 msec average delay, that equals 1.25 msec!
+    &quot;&quot;&quot;
+    mouse=io.devices.mouse
+    stim.setPos(mouse.getPosition())
+    log(&quot;Mouse Pos: {}&quot;.format(mouse.getPosition())
+    print &quot;Mouse Pos: &quot;,mouse.getPosition()
+    if last_mouse_pos == mouse.getPosition():
+        pass
+    else:
+        last_mouse_pos= mouse.getPosition()
+
+def good_iohub_code():
+    &quot;&quot;&quot;
+    Vs. Using a Fetch and Reuse approach.
+    **GOOD** : Would take approx. getPosition() call delay * 1 (msec) to execute.
+    Assuming a 0.25 msec average delay, that equals 0.25 msec, or 5 times faster than the above.
+    &quot;&quot;&quot;
+    mouse=io.devices.mouse
+    current_mouse_pos=mouse.getPosition()
+    stim.setPos(current_mouse_pos)
+    log(&quot;Mouse Pos: {}&quot;.format(current_mouse_pos)
+    print &quot;Mouse Pos: &quot;,current_mouse_pos
+    if last_mouse_pos == current_mouse_pos:
+        pass
+    else:
+        last_mouse_pos = current_mouse_pos</code></pre></li>
+</ul>
+<p><strong>Examples:</strong></p>
+</div>
+<div class="cell border-box-sizing code_cell vbox">
+<div class="input hbox">
+<div class="prompt input_prompt">
+In&nbsp;[52]:
+</div>
+<div class="input_area box-flex1">
+<div class="highlight"><pre><span class="k">def</span> <span class="nf">deviceAccessTest2</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="n">io</span><span class="o">=</span><span class="n">psychopy</span><span class="o">.</span><span class="n">iohub</span><span class="o">.</span><span class="n">launchHubServer</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
+    <span class="n">display</span><span class="p">(</span><span class="s">&quot;** List of Available ioHub Devices:&quot;</span><span class="p">)</span>
+    
+    <span class="c"># Get the list of methods available for the available iohub devices:</span>
+    
+    <span class="k">for</span> <span class="n">device_name</span><span class="p">,</span><span class="n">iodevice</span> <span class="ow">in</span> <span class="n">io</span><span class="o">.</span><span class="n">deviceByLabel</span><span class="o">.</span><span class="n">iteritems</span><span class="p">():</span>
+        <span class="n">display</span><span class="p">(</span><span class="s">&quot;{device_name} : {iodevice_methods}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">device_name</span><span class="o">=</span><span class="n">device_name</span><span class="p">,</span><span class="n">iodevice_methods</span><span class="o">=</span><span class="n">iodevice</span><span class="o">.</span><span class="n">getDeviceInterface</span><span class="p">()))</span>
+        
+    <span class="c"># Test the round trip delay in making a call to a ioHubDeviceView instance</span>
+    <span class="c"># and getting the reply with any new events from the ioHub Device class on the ioHub Process</span>
+    <span class="c">#</span>
+    <span class="n">mouse</span><span class="o">=</span><span class="n">io</span><span class="o">.</span><span class="n">devices</span><span class="o">.</span><span class="n">mouse</span>
+    <span class="n">delays</span><span class="o">=</span><span class="n">numpy</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">10000</span><span class="p">,</span><span class="mi">1</span><span class="p">),</span><span class="n">dtype</span><span class="o">=</span><span class="n">numpy</span><span class="o">.</span><span class="n">float64</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">xrange</span><span class="p">(</span><span class="mi">10000</span><span class="p">):</span>
+        <span class="n">start_time</span><span class="o">=</span> <span class="n">Computer</span><span class="o">.</span><span class="n">getTime</span><span class="p">()</span>
+        <span class="n">mouse_events</span><span class="o">=</span><span class="n">mouse</span><span class="o">.</span><span class="n">getEvents</span><span class="p">()</span>
+        <span class="n">end_time</span><span class="o">=</span> <span class="n">Computer</span><span class="o">.</span><span class="n">getTime</span><span class="p">()</span>
+        <span class="n">delays</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">=</span><span class="n">end_time</span><span class="o">-</span><span class="n">start_time</span>
+    <span class="n">delays</span><span class="o">*=</span><span class="mf">1000.0</span>
+
+    <span class="c"># Get the time it takes to get 2 times. ;)</span>
+    <span class="c">#</span>
+    <span class="n">timer_delays</span><span class="o">=</span><span class="n">numpy</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">1000000</span><span class="p">,</span><span class="mi">1</span><span class="p">),</span><span class="n">dtype</span><span class="o">=</span><span class="n">numpy</span><span class="o">.</span><span class="n">float64</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">xrange</span><span class="p">(</span><span class="mi">1000000</span><span class="p">):</span>
+        <span class="n">start_time</span><span class="o">=</span> <span class="n">Computer</span><span class="o">.</span><span class="n">getTime</span><span class="p">()</span>
+        <span class="n">end_time</span><span class="o">=</span> <span class="n">Computer</span><span class="o">.</span><span class="n">getTime</span><span class="p">()</span>
+        <span class="n">timer_delays</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">=</span><span class="n">end_time</span><span class="o">-</span><span class="n">start_time</span>
+    <span class="n">timer_delays</span><span class="o">*=</span><span class="mf">1000.0</span>
+    
+    <span class="n">io</span><span class="o">.</span><span class="n">quit</span><span class="p">()</span> 
+    
+    <span class="n">display</span><span class="p">(</span><span class="s">&quot;** Time taken to call getTime twice (msec): min={dmin}, max={dmax}, median={dmed}, mean={dmean}, stdev={dstd}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+                                            <span class="n">dmin</span><span class="o">=</span><span class="n">timer_delays</span><span class="o">.</span><span class="n">min</span><span class="p">(),</span><span class="n">dmax</span><span class="o">=</span><span class="n">timer_delays</span><span class="o">.</span><span class="n">max</span><span class="p">(),</span><span class="n">dmed</span><span class="o">=</span><span class="n">numpy</span><span class="o">.</span><span class="n">median</span><span class="p">(</span><span class="n">timer_delays</span><span class="p">),</span>
+                                            <span class="n">dmean</span><span class="o">=</span><span class="n">timer_delays</span><span class="o">.</span><span class="n">mean</span><span class="p">(),</span><span class="n">dstd</span><span class="o">=</span><span class="n">timer_delays</span><span class="o">.</span><span class="n">std</span><span class="p">()))</span>
+            
+    
+    <span class="n">display</span><span class="p">(</span><span class="s">&quot;Using min getTime() call duration of {0} msec in getEvents() delay calculation&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">timer_delays</span><span class="o">.</span><span class="n">min</span><span class="p">()))</span>
+    <span class="n">delays</span><span class="o">-=</span><span class="n">timer_delays</span><span class="o">.</span><span class="n">min</span><span class="p">()</span>
+    
+    <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">[</span><span class="mi">20</span><span class="p">,</span><span class="mi">10</span><span class="p">])</span>
+    <span class="c"># the histogram of the delay data</span>
+    <span class="n">n</span><span class="p">,</span> <span class="n">bins</span><span class="p">,</span> <span class="n">patches</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">delays</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="n">normed</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">facecolor</span><span class="o">=</span><span class="s">&#39;blue&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.75</span><span class="p">)</span>
+    <span class="c"># add a &#39;best fit&#39; line</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="n">plb</span><span class="o">.</span><span class="n">normpdf</span><span class="p">(</span> <span class="n">bins</span><span class="p">,</span> <span class="n">delays</span><span class="o">.</span><span class="n">mean</span><span class="p">(),</span> <span class="n">delays</span><span class="o">.</span><span class="n">std</span><span class="p">())</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">bins</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="s">&#39;r--&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s">&#39;msec delay&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s">&#39;Percentage&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s">&#39;$\mathrm{{Histogram\ of\ mouse.getEvents() msec Delay:}}\ \min={0},\ \max={1},\ \mu={2},\ \sigma={3}$&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+            <span class="n">delays</span><span class="o">.</span><span class="n">min</span><span class="p">(),</span> <span class="n">delays</span><span class="o">.</span><span class="n">max</span><span class="p">(),</span> <span class="n">delays</span><span class="o">.</span><span class="n">mean</span><span class="p">(),</span> <span class="n">delays</span><span class="o">.</span><span class="n">std</span><span class="p">()))</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="n">delays</span><span class="o">.</span><span class="n">max</span><span class="p">()</span><span class="o">+.</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mf">80.0</span><span class="p">])</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="bp">True</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+    
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="n">deviceAccessTest2</span><span class="p">()</span>      
+</pre></div>
+
+</div>
+</div>
+
+<div class="vbox output_wrapper">
+<div class="output vbox">
+
+
+<div class="hbox output_area"><div class="prompt"></div>
+<div class="box-flex1 output_subarea output_display_data">
+
+
+<pre>
+&apos;** List of Available ioHub Devices:&apos;
+</pre>
+
+</div>
+</div>
+
+<div class="hbox output_area"><div class="prompt"></div>
+<div class="box-flex1 output_subarea output_display_data">
+
+
+<pre>
+&quot;experiment : [&apos;clearEvents&apos;, &apos;critical&apos;, &apos;data&apos;, &apos;debug&apos;, &apos;enableEventReporting&apos;, &apos;error&apos;, &apos;exp&apos;, &apos;fatal&apos;, &apos;getConfiguration&apos;, &apos;getEvents&apos;, &apos;info&apos;, &apos;isReportingEvents&apos;, &apos;log&apos;, &apos;warn&apos;, &apos;warning&apos;]&quot;
+</pre>
+
+</div>
+</div>
+
+<div class="hbox output_area"><div class="prompt"></div>
+<div class="box-flex1 output_subarea output_display_data">
+
+
+<pre>
+&quot;mouse : [&apos;clearEvents&apos;, &apos;enableEventReporting&apos;, &apos;getConfiguration&apos;, &apos;getCurrentButtonStates&apos;, &apos;getDisplayIndex&apos;, &apos;getDisplayIndexForMousePosition&apos;, &apos;getEvents&apos;, &apos;getPosition&apos;, &apos;getPositionAndDelta&apos;, &apos;getScroll&apos;, &apos;getSystemCursorVisibility&apos;, &apos;getlockedMouseDisplayID&apos;, &apos;isReportingEvents&apos;, &apos;lockMouseToDisplayID&apos;, &apos;setPosition&apos;, &apos;setScroll&apos;, &apos;setSystemCursorVisibility&apos;]&quot;
+</pre>
+
+</div>
+</div>
+
+<div class="hbox output_area"><div class="prompt"></div>
+<div class="box-flex1 output_subarea output_display_data">
+
+
+<pre>
+&quot;display : [&apos;clearEvents&apos;, &apos;enableEventReporting&apos;, &apos;getBounds&apos;, &apos;getConfiguration&apos;, &apos;getCoordBounds&apos;, &apos;getCoordinateType&apos;, &apos;getDefaultEyeDistance&apos;, &apos;getDeviceNumber&apos;, &apos;getDisplayCount&apos;, &apos;getEvents&apos;, &apos;getIndex&apos;, &apos;getPhysicalDimensions&apos;, &apos;getPixelResolution&apos;, &apos;getPixelsPerDegree&apos;, &apos;getPsychopyMonitorName&apos;, &apos;getRetraceInterval&apos;, &apos;getRuntimeInfo&apos;, &apos;isReportingEvents&apos;]&quot;
+</pre>
+
+</div>
+</div>
+
+<div class="hbox output_area"><div class="prompt"></div>
+<div class="box-flex1 output_subarea output_display_data">
+
+
+<pre>
+&quot;keyboard : [&apos;clearEvents&apos;, &apos;enableEventReporting&apos;, &apos;getConfiguration&apos;, &apos;getEvents&apos;, &apos;getModifierState&apos;, &apos;isReportingEvents&apos;]&quot;
+</pre>
+
+</div>
+</div>
+
+<div class="hbox output_area"><div class="prompt"></div>
+<div class="box-flex1 output_subarea output_display_data">
+
+
+<pre>
+&apos;** Time taken to call getTime twice (msec): min=0.00181118957698, max=0.0839161220938, median=0.00241480302066, mean=0.0022868144504, stdev=0.000348845322469&apos;
+</pre>
+
+</div>
+</div>
+
+<div class="hbox output_area"><div class="prompt"></div>
+<div class="box-flex1 output_subarea output_display_data">
+
+
+<pre>
+&apos;Using min getTime() call duration of 0.00181118957698 msec in getEvents() delay calculation&apos;
+</pre>
+
+</div>
+</div>
+
+<div class="hbox output_area"><div class="prompt"></div>
+<div class="box-flex1 output_subarea output_display_data">
+
+
+<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAABIgAAAJpCAYAAADG5AneAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
+AAALEgAACxIB0t1+/AAAIABJREFUeJzs3Xu4lWWdP/7PFjyLbhABycM2DQ0GBcRU0kQR6utlCKTm
+2NfAUfuqk5Ol42n8fn+Yo2LpRGZaoiUjNqaTB1AzRaVSUUBEU1GQoxYiCFtBQIT9/P7w2mvcsNZz
+b8y19trwel0XV97PXofP89zvtdrcrPuzarIsywIAAACALdZWLV0AAAAAAC3LAhEAAADAFs4CEQAA
+AMAWzgIRAAAAwBbOAhEAAADAFs4CEQAAAMAWzgIRAAAAwBbOAhEAAADAFs4CEQAVNW/evIiIWLRo
+UaxataqFqwEAACIsEAFQQXPnzo1nn302IiJ22223+NGPftTCFW2aLMvi3XffjYaGhpYuBQAAPlM1
+WZZlLV0EUFkTJkyIH/3oRzF37tw455xz4vLLL48rrrgifvnLX8Z+++0XF110URx33HHRrVu3eOyx
+x2KfffYp+jjz58+P9u3bxy677FLhM/j7LFiwIG666aZ444034vLLL4/evXu3dEmfiQ3no3GeFy1a
+FKeffno0NDTE0qVL47e//W089thj0bNnz7I9dykXX3xxXHvttYXx1KlTY+bMmfHtb3/7M6slZcPr
+sn79+liwYEF069YtLr744tz7jhs3Ls4777x48cUXY6+99qpQxRtraGhIvj4/rfvvvz9effXV2Gqr
+reJzn/tcnHbaaSVvO2PGjBg3blxcd911yeMPPPBArFy5MubMmRMdO3aMc889N/f2v/rVr+Jvf/tb
+bL311rH//vvHkCFDIiJi5cqV8aMf/Sj23HPPeP/99+MHP/hB1NTUlKx7woQJ8dZbb8WaNWti7733
+jmHDhuUeL/W8per/zW9+E4sWLYopU6bE0KFD45RTTvnU177SmjvXpc59U695xKbN9b777htvvfVW
+1NbWxo9//OON3iemTJkSjz/+eFx66aXR0NAQ7du3j622+p9/+xw0aFD89re/jfHjx8df//rXjeop
+NXel6s/LcCX8va/NUudb6nFLnW/e/EY0nZeI0vNY6nlL1VmqnlL5KXW8UpozX3m3KfX+GrHxNS51
+vNS1L/Y+mmVZyddQ3mtxwzo/zWsxdb5ABWXAFun222/PTjrppCbHTjzxxGzs2LGF8b333putXbu2
+5GP86le/yubPn1+2Gsvle9/7XvaXv/wlmzBhQjZv3ryWLuczU2w+is3z008/nT344INlf+4NzZgx
+I7vhhhs2On7aaad9prU0R7Hrcumll2ZXXnll8r5HHXVUtmDBgnKV1myp1+enUV9fn/Xp06cwPuyw
+w7IlS5YUve3111+fDR06NBsxYkTy+PLly7Ntt902W716ddbQ0JB16NChkJdit3/ppZeyI444ojA+
+9thjszVr1mRZlmWnn3564b7du3fP5s+fX7LuhQsXZj/+8Y8Lx88444xsxYoVJY+Xet5S9c+ePbuQ
+6SVLlmS1tbXZ3LlzU5e5KjR3rkud+6Zc85UrV2ZZ1vy5Xr16dZZlWXbLLbdkCxYsyD766KON6lq/
+fn321a9+NbviiiuyLMuyuXPnZnfeeWc2b968bP78+dno0aOzV199NXvzzTeLznWpuStVf16GK+Hv
+fW0WO9958+YVfdylS5eWPN9Sr51GG85LlhWfx1LnU6rOUvWUyk9eriqhOfOVd5tS769ZVvwalzpe
+6jVU7H201Gso73GK1bkpr8W89wagZdhiBluoLMsiK/IBwk8eGzp0aGy99dZF779kyZL42c9+Vrb6
+yum9996Ldu3axfHHHx91dXUtXc5notR8bDjPzz33XPTr1y/q6+vL/twbevDBB+OYY47Z6Phuu+0W
+b7zxxmdWT3MUy//ll18eN9xwQyxbtiz3vjU1NeUsrdnyXp+f1p/+9Kfo3r17YXzQQQfFk08+WfS2
+P/jBD+KEE05o1vHa2tp4/vnnY7vttouamppYt25d4foXu/0jjzzS5JNRnTp1iqeeeirmzp0bf/vb
+32LvvfeOiIhHH3009t5775J1L126NCZOnBhr166NiIgdd9wxttlmm1iyZEnR46Wet1T9r7zySmGb
+ZMeOHWO//faL559/PnGVq0Nz57rUuW/KNW/MaXPn+umnn46IiG222Sb22muvaNu27UZ13XPPPXHs
+sccWcrTtttvGkCFDoq6uLnbeeefYeuut44tf/GK88847Ree61NyVqj8vw5Xw9742i53v1KlTiz7u
+E088UfJ8S712Gm04LxHF57HU+bz66qsb1Tlt2rSS9ZTKT16uKqE585V3m1LvrxHFr3Gp48Wufan3
+0VKvoVKPU6rOTXkt5r03AC1j4//HBbZojX/5ffzxx+P73/9+3HzzzbHTTjvFlClTYtddd42xY8fG
+Aw88EI888kjU19fHjTfeGN27d4/TTz89fvOb38SyZcti2223ja222irOOOOMiIgYM2ZMrFu3Ll59
+9dXYd9994/XXX49+/frFBRdcEDfddFP85je/iYsuuigOO+ywuPrqq2OPPfaIv/zlL/HP//zPUVdX
+F//5n/8ZF1xwQdx1112xZMmSePjhh+MHP/hBvPzyy/G3v/0tOnXqFCNGjNjoXIrV8/jjj8dLL70U
+V155ZZxyyilx7LHHFm6/Kc9T7LHHjBkTF1xwQbz88stRX18fp59+egwePDiGDh0azz33XJPrFxFx
+ww03xA477BDz5s2L4447Lr785S9vdA7Frt3NN9+80X3nzZu30XxsaP78+fHaa6/FoYceGt/61rfi
+5ptvjn/913+NkSNHxoUXXhjDhg2LDz74IO6777649dZbmzz+nDlzmlybRx55JK644orYe++9i2bh
+xRdf3CgzU6dOjcsuu2yjug466KB4/vnnY7/99mv2HBR7/FLX9KabbooPPvggdthhh9h2223jzDPP
+LJr9HXbYIbp27RoPPfRQnHbaac2an2J5veWWW+LCCy+MSy65JC677LL45je/Ge+8806MHz8+2rVr
+FxERPXv2jLFjx0afPn2aPF5zz/+Tr8+8uWk0d+7cGDNmTNHzjog47LDD4oQTTihsIWhUW1sbs2fP
+Lnm/Un9BLna8R48eERHx1FNPRf/+/Zsszm54+3bt2sVHH31UGK9ZsyZmzpwZ8+fPj9ra2rjjjjui
+vr4+2rVrFyNGjChZ90knnRQNDQ1xyCGHxHe+850YNGhQbLPNNtGnT5+ix0s974ABA4rW/7nPfS5+
+//vfF85h0aJFsd9++5W8XhGb9j5TLF833XRTXHXVVTFixIg4++yz4x/+4R/iW9/6Vtx0000RUZ65
+Lnbuv//97zfpmjdKzfXq1avjtddeiwEDBsTUqVPjww8/jPfffz+6desWgwcPjoiPF6XbtGkTu+22
+W3zwwQcREdG1a9fCY/zyl7+M73//+xERJef6uOOOKzp3vXr1Kll/XoY/rUq9Noud7xe+8IWYPHly
+ycctdr51dXUlr0+xeYmIovNY6nz+9V//teRrqlg9pV6zea/lT6u5cxURzZqv1G2KvY+Wusabcu0b
+FwA3fB8t9Roq9Til6tzU12Le+QItoCKfUwKqzq9//eusZ8+e2ahRowp/evbs2WSL2be//e1s0qRJ
+2Xe/+91s4cKFWZZ9/DHjRv379y9stZk6dWp25plnFn52/vnnZ3/84x+zxYsXFz5Cfffdd2fnnXde
+4SPKRx55ZHbPPfdkkydPzt55552svr4+23nnnbP169dnU6dObbIF6Mgjj8wefvjhLMuy7Kc//Wl2
+8sknZ1mWZWvWrMl69+690fmVqifLsmzEiBGF/95Qc54n77G/8pWvFK7Jr371q2zkyJFNrt+YMWOy
+LMuyiRMnZueee26WZVm2YsWK7Etf+tJGtZS6dqXu+8n5aNQ4z1dffXV2+OGHZ7fffnuTn3/nO9/J
+7r///izLsuyOO+7IffwNr811111XeJwNn7vYOQ8cOLDoNR8/fnyTx2rOHDT3mv75z3/O/tf/+l9Z
+lmXZ9OnTs7POOqtwXU488cSNajnyyCOzq6++Ond+Gs81L6/nnntu9rvf/S7Lsiy78847N9racN99
+9zXZlrFhDc3J+re//e1C7vLmZlNcffXV2YUXXlgY/9//+3+zSy+9tOTtb7/99qJbAkod/93vfped
+csop2ezZs3Nvv3jx4uyQQw7JGhoasvfffz/r0aNHdvXVV2dXXXVV1qNHj8LtjjjiiGzWrFm5dT/+
++OPZsccem2233XbZL37xi8Jtih0v9rzXXHNNsv4sy7IJEyZkJ5xwQslr9UnNmeO8fE2cODE78cQT
+s1deeSUbP358s55zQ5s61xue+6e55lnWvLluvOb33ntv4XYHHXRQtnz58izLsuwXv/hF1tDQkN1+
+++3ZyJEjmzz+u+++m11wwQVNjuXVk2Ubz13e7fMyUMy6deuyL3/5y4XxP/3TPzX7vp/0Wb02s6zp
++V511VW5j1vsfEtdn1LzUmwem3M+xV5TG9ZTKj+p13Ipr7/+enbSSSdl/fv3z3baaafs+OOPz26+
++ebk/TbUnPNL3abYHJa6xpty7f/93/+96Ptoo2KvoVKvxVJ1lnqcTXlvAFqGTxDBFmz//fdv0pR3
+2rRpTf4Fp7HB4NChQ6Nv375x5JFHNvkXpU+65557Cv+6FxHRvXv3+K//+q8444wzYvvtt4+Ij/91
+7I033ih8RLlNmzbxD//wD3HAAQcU7vfoo4/GL3/5y1izZk0sWbKkcLxNmzaF2+2yyy6x//77R8TH
+H2Vevnx5s+v5yle+EhGl/6WqOc+T99ifbMqYd/3Gjx8fa9euLXzy5eCDD96olgULFhS9dnn3LXZe
++++/f1x66aXx3e9+N+67776IiHj99ddj//33L3zy4IQTToiGhobcx9/w2syfP7/J82QbbE/c8JzX
+r19f9Jpvv/32hY+cF3ueYnPQnGvap0+fuPfee+PII4+MiIjevXvHLbfcUrSGRsuWLYtOnTrFhAkT
+kvOzyy67lMzrKaecEjfeeGMMGzYs1q1bF9ttt12T++Y1S21u1j+ZtdTcNFe7du3i3XffLYxXr14d
+nTt3Lnn7Uq+jUseHDRsWgwYNit69e8djjz1W+ATGhrfv1KlT/PrXv44xY8bE7rvvHj179oxOnTrF
+qlWrmjRX32uvveLRRx8tWffs2bNj0qRJ8dhjj8XEiRPj9NNPj549e0bHjh2LHu/Xr1/R503VX19f
+H7fffnuMGzeu5LX6pObMcV6+BgwYEHfddVfcfPPNn3qr76bO9YbnvqnXvF+/fhHR/LmOiCZbTtq3
+bx+TJk2K3XffPQ499NCoqakpmrPf/va3hW0xERGzZs3KrWfDuUvdvlQGSpk8eXLh03xZlsXkyZOT
+nzIr5rN6bW54vjvvvHOTbbUbPu6G57t27dqi16dNmzYl56XYPKbOp9Rrqtj1L5afvFyVsmzZsjj7
+7LPj4Ycfju222y6GDBkSY8eO/VRfxNGc+UrdZsPr+Oyzzxa9xqWORxS/9jvvvHPR99EvfOELEbHx
+a6jU4zT+/1iprG3qa7HU4wCVZYEItlCl+qgUO15XVxevvvpqPPzww3HWWWfFk08+2eSXmGeffTY+
+/PDD+PDDDwvH1q5dG+vWrYvu3bvH+++/Hw0NDfHGG2/EV7/61SaPvcMOOxT++7XXXoszzjgj7rvv
+vthmm21i/PjxsX79+mjTpk1EROF/N/zvYkrVkzr/5jxP6rEbNf6ys+H1e+KJJ6JNmzZRV1dX+KWr
+2N77Utcudd/nnnsuDj300I3Os127doVvHpk8eXLsv//+ceSRR8Z3vvOdeOGFF6Jbt27Jx09d98bn
+LnbOxfqIRHzcE6pDhw5NjqXmoLnX9Pzzzy/6lfTF5v/DDz+MxYsXx3HHHRevvPJKcn7y8nrEEUfE
+mWeeGa+//nrsueeeOVesuE3JenNu19ytEfvuu29MmzatcHzp0qUbbYP7pOa+jzz00ENx9dVXx9NP
+Px077bRTdOrUKf77v/87LrzwwpKP071798JC7A9/+MO48sorY+HChfHnP/+5cJutttoqGhoaCn1K
+Gr377rvRu3fvGD9+fJx00kkREXHsscfG2LFj46mnnoo2bdoUPd6vX7+iz5tXf5ZlMWrUqLj11ltj
+p512igULFjTZ3ldKao5T74eHH354/PznP4/ly5dH+/btC/f7rOe61Ln36NFjk655418CmzvX48aN
+i/Hjx8fdd98dEREffPBBtG3bNqZMmRKrVq2KP/zhD/H000/H6tWrY/z48YUtL08++WSTb1iaMGFC
+yXo2nLv58+eXvP3y5ctzM1zKI488UnjvfuGFFzb69shKvjaLZXXDx3333XejT58+Jee9pqam6PXZ
+fvvtN5qXBx54IFasWFF0HvPOp1idL7/8csnrXyw/EcVzlefnP/95/PM//3NhQf/DDz9s8jvKpmwx
+a858pW6z4RxOnTq16DVeuHDhJl37Hj16FH0fbbTha6jUa7FUnaUeJ++1mPc4QGVpUg1bqGL/UpOV
+aFzd2IfotNNOi+9973vx9ttvR0TETjvtFO+//37MmjUrvvGNb8T06dML93nxxRfjG9/4Ruywww5x
+7LHHxq233hrbbLNN/Mu//EvJOh566KE46qij4gtf+EL87W9/i4iP/wVqw9s251+ZStWTd57NfZ68
+x95pp50Kn4Z57bXXYv369UWv34knnhh/+tOfCo9x1113RUTEnDlzCs+74447Fr12pe670047xYoV
+K+L111/f6Fw+6a233ipc35qamjjhhBNi5MiRcdhhh+U+ft612fC5i51zly5dYuXKlRvVU6xvS2oO
+mntNTzjhhHjiiScKxyZMmFDycUeOHBnnnHNO7L777rnXoPH+eXmtqamJ448/Pi6++OLo37//Rs91
+3333NekTsaHmZv2TP8+7z+c///m45pprSv5p/EvNV77ylSZNlqdPn17o2fHJbBZ7/rzjbdq0KVyH
+LMvizTffjAMPPLDk7efPnx+9evWKiIiZM2fG3nvvHfvtt1/069cvFi5cWLjdnDlz4rjjjtuo7uef
+fz6OPfbY2GeffeLll18uHP/www/j0EMPLXr8sMMOK/m8efX/7Gc/i5NOOinWrFkTU6ZMKXx6a/bs
+2UUXJzc851LX8MEHHyyZrylTpsRee+0VI0eOjPPPP7/J/T7ruS517kcddVSzr3nje0ux8y11zevq
+6uLss8+OiIhVq1bFkiVL4phjjonzzjsvLr744rj44oujT58+ccQRRzTphzJ79uzCJy8jIreeDedu
+wYIFJTOTl4G8uf7DH/5Q+Ev/Qw89FAMGDIjx48eXbb5KXedi5zt//vyi8zhgwICS51vqehablxNO
+OKHkPOadT7E6S9VTKj+ljufN14oVKwpNo1955ZXo0aNHky8CaO5cNXe+8m5TbA5LXeNNvfal3kcb
+bfgaKvU4peos9Tib+t4AtIw2I0eOHNnSRQCV9fDDD8dNN90UL7/8cqxduzaOOOKIuOaaa+KBBx6I
+N998M3bbbbeYM2dOjBkzJhYsWBA777xzzJs3L2bPnh3Lli2LoUOHRsTHHzO+++67Y6+99orjjz8+
+VqxYEU8//XQ8++yzsfvuu8epp54aERHXXHNNTJo0KWbOnBkvv/xyfOUrX4nf/e53MW7cuFi0aFEc
+eOCB0b59++jatWs8+OCDsfXWW8f69evj5Zdfjq5du8a8efPijjvuiHfffTf22GOP+MlPfhIvv/xy
+9OzZM375y1/G448/Hh06dIi+ffsWznHvvfcuWs8f/vCHGDNmTMydOzcOOOCA6NKlS+E+d911V4wb
+Ny75PN/4xjdKnmvHjh3joYceirfeeitWrlwZDzzwQLz//vuxatWqwvUbNmxY7LnnnrFmzZp44IEH
+4o033oj9998/9thjjzj22GPj0EMPjd13373ktfv85z9f9L6fnI+ePXsW5nnWrFmxatWqeOqpp2LC
+hAlx3nnnxYknnlj4y02XLl2ivr6+8Mv3hrV169YtnnnmmaJz0KtXr+jatetGz/2nP/0pZs+eHbNn
+z47ly5fH0KFDY/ny5fHBBx80+WaZiIhbbrklzj777Gjbtm2z5qB9+/aF65m6pkceeWS899578dBD
+D8XChQtjr732ipdeeiluuummeP3112PVqlXxpz/9KcaOHRtdunSJ//f//l/Ra9B4jT9Z3/Dhw+P3
+v//9Rnn90pe+FBERHTp0iPnz5zf5xbvRqaeeGkcdddRGWw6am8GlS5fGmDFjYuHChfHRRx/FnXfe
+WXJuNkVjo+YJEybEpEmT4utf/3ocfvjhEREbZfPGG2+McePGxUsvvRTvvfde9OnTJ7bddtuix3v0
+6BGvv/56PPvss3HPPffEkCFD4pvf/GbJx+nQoUO88847MXPmzHjsscfi+uuvj+233z7atm0be+yx
+R/znf/5nPP7443HcccfFUUcdVbLuL37xi/HEE0/EE088EdOnT4/169fHCSecUPL4jjvuWPR599tv
+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
+TQwfPry8helBBGwm9CACAACqxafqQRQRMWLEiFi1alUsXLgwDjjggLIUBwAAAEDLSX7N/fjx46N3
+797xta99LSIiXnjhhRg8eHDZC4M89uuSIiOkyAgpMkIe+SBFRkiREfK0RD6SC0QjR46M5557Ltq3
+bx8REb179465c+eWvTAAAAAAKiO5QLT11ltHbW1t0zttlbwblFX//v1bugSqnIyQIiOkyAh55IMU
+GSFFRsjTEvlIrvT06NEj7rzzzli3bl3Mnj07zjvvvOjXr18lagMAAACgApILRDfeeGO88sorse22
+28Y//uM/xs477xyjR4+uRG1Qkv26pMgIKTJCioyQRz5IkRFSZIQ8LZGPkt9itnr16vjFL34Rb7zx
+Rhx44IExefLk2HrrrStZGwAAAAAVUJNlWVbsByeffHJss802ccQRR8QjjzwSe++9d/z0pz+tXGE1
+NVGiNIBWZfr06XHGGXdGbe31TY4vXTo41q59L7p2/WOT4888s2/06zenybG33z46Zs58suy1AgAA
+m7dS6y0lP0E0c+bM+Mtf/hIREWeeeWYccsgh5asOAAAAgBZTsgdR27Zti/43VAP7dUmREVJkhBQZ
+IY98kCIjpMgIeaqqB9FLL70U7dq1K4xXr15dGNfU1MT7779f/uoAAAAAKLuSPYhamh5EwOZCDyIA
+AKBalFpvSX7NPQAAAACbNwtEtEr265IiI6TICCkyQh75IEVGSJER8rREPiwQAQAAAGzh9CACKDM9
+iAAAgGqhBxEAAAAARVkgolWyX5cUGSFFRkiREfLIBykyQoqMkEcPIgAAAAAqTg8igDLTgwgAAKgW
+ehABAAAAUJQFIlol+3VJkRFSZIQUGSGPfJAiI6TICHn0IAIAAACg4vQgAigzPYgAAIBqoQcRAAAA
+AEVZIKJVsl+XFBkhRUZIkRHyyAcpMkKKjJBHDyIAAAAAKk4PIoAy04MIAACoFnoQAQAAAFCUBSJa
+Jft1SZERUmSEFBkhj3yQIiOkyAh59CACAAAAoOL0IAIoMz2IAACAaqEHEQAAAABFWSCiVbJflxQZ
+IUVGSJER8sgHKTJCioyQRw8iAAAAACpODyKAMtODCAAAqBZ6EAEAAABQlAUiWiX7dUmREVJkhBQZ
+IY98kCIjpMgIefQgAgAAAKDi9CACKDM9iAAAgGqhBxEAAAAARVkgolWyX5cUGSFFRkiREfLIByky
+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
+EV1ilpCQoBkzZmjYsGGqrKzUhAkTlJ6erldeeUWSdM8992j48OF69913dcUVV6h58+aaPXu27bmI
+LcFkpKSkRKNHj5YkVVRUaPz48Ro6dKhjPwvCI5CMlJSUqE+fPjpy5IgaNWqk559/Xl999ZVatGjB
+fSTGBZOPvXv3cg+JA4FkZNq0aTp06JB33X9iYqI2bNjA7yJxIpiM8LtI7AskH7m5uZo7d64SExPV
+okULvfnmm7bnIrYEkxHuIfEhkIzU99xQ8VgWA38AAAAAAADiWURnEAEAAAAAACD60CACAAAAAACI
+czSIAAAAAAAA4hwNIgAAAAAAgDhHgwgAACAM0tLSdPDgwaCPAQAAiAQaRAAAAGHg8XhCcgwAAEAk
+0CACAAAxpbCwUJ07d9Ydd9yhTp06afz48frggw80cOBAdezYURs3bpQkrVy5UhkZGcrIyFCvXr10
+7NgxSdJTTz2lvn37qkePHvrNb37jfd25c+eqR48e6tmzp2677bZa1z1w4ICGDh2qbt266e6775Zl
+Wd7vzZs3T/369VNGRobuvfdeVVVV1Tp/1KhR6t27t7p166aZM2dKkmbNmqWHHnrIe8zMmTP18MMP
+h+R9AgAAOJvHOvu3FwAAAJcrLCxUhw4dtHnzZnXp0kV9+vRRjx499PrrrysvL0+zZ8/W22+/rezs
+bE2ZMkX9+/fX8ePHdc455+ijjz5Sbm6uXnnlFVVVVemmm27So48+qlatWmn06NFau3atWrVqpUOH
+Dik5OdnnupMmTdJFF12kX//613r33Xd14403av/+/SotLdVjjz2mt99+W40bN9Z9992n/v3769Zb
+b1W7du20adMmn9c8ceKE+vbtq3/84x9q0qSJevTooW3btqlx48YaOHCgXn31VXXt2tWhdxcAAMSq
+BKcLAAAACLV27dp5myhdu3bVddddJ0nq1q2bCgsLJUkDBw7UQw89pPHjx2v06NFq06aNPvjgA33w
+wQfKyMiQJB07dkw7duzQsWPHNGbMGLVq1UqSajWHJGnVqlV6++23JUnDhw9XcnKyLMvSRx99pE2b
+Nql3796SpBMnTig1NbXW+c8//7wWL14sSSouLtbXX3+tvn376tprr9Xf//53de7cWWfOnKE5BAAA
+woIGEQAAiDnnnHOO98+NGjVSkyZNvH+uqKiQJD322GO68cYb9c4772jgwIF6//33JUlTpkzRz372
+M5/XmzFjhgJ56LquY3JycvTHP/6xzvPy8/P10Ucfad26dWratKmysrJ08uRJSdJdd92lP/zhD0pP
+T9edd95prAEAAKAhmEEEAADi0jfffKOuXbvq0UcfVZ8+fbRt2zYNGzZMs2bN8s4j2r17t/bt26dr
+r71WixYt8n7imL9PHrv66qv1xhtvSJLee+89HTp0SB6PR4MHD9Zbb72lffv2ec/917/+5XPukSNH
+lJycrKZNm2rr1q1at26d93t9+/bVrl279MYbb2jcuHFheS8AAAB4gggAAMSc73462NnbNX9+/vnn
+tWLFCjVq1EjdunXT9ddfr8TERG3ZskX9+/eXJLVs2VLz5s1Tly5d9Pjjj+uaa65R48aN1atXL82a
+NcvnGlOnTtW4ceO0YMECDRgwQJdddpkkKT09Xb///e81dOhQVVVVKTExUS+99JIuvfRS77k//OEP
+9Ze//EVdunRRp06dvNevMWbMGH366ac677zzQvcmAQAAnIUh1QAAAFFuxIgRevjhh5WVleV0KQAA
+IEaxxAwAACBKlZWVqVOnTmrWrBnNIQAAEFY8QQQAAAAAABDneIIIAAAAAAAgztEgAgAAAAAAiHM0
+iAAAAAAAAOIcDSIAAAAAAIA4R4MIAAAAAAAgztEgAgAAAAAAiHP/H6yTKKrMCW1RAAAAAElFTkSu
+QmCC
+">
+
+</div>
+</div>
 
 </div>
 </div>
@@ -3947,7 +4813,1724 @@ In&nbsp;[12]:
 <div class="text_cell_render border-box-sizing rendered_html">
 <hr />
 <h3 id="events">Events</h3>
-<p>TBC</p>
+<p>Each ioHub Device supports 0 - N ioHub Device Events. When a device is being monitored by the ioHub Process, any events that occur:</p>
+<ul>
+<li>Are converted to a common device type independent event field set + a common device type dependent field set. The event attributes for a given device type are the same regardless of the hardware being used to implement the ioHub Device. This is common sense for devices like the keyboard and mouse (at least within a given OS), but is normally far from the case when using devices like eye trackers or DAQs from different manufacturer's.</li>
+<li>Are either time stamped by the ioHub process if the event does not have a device time stamp, or has the device time stamp converted to the psychopy / iohub time base.</li>
+<li><p>In the case of device time to iohub time base conversion, when possible:</p>
+<ul>
+<li>Both offset and drift between the two time bases are factored into the conversion.</li>
+<li>The delay of the event (iohub event received time - device event time) is subtraced from the iohub event time for the device.</li>
+</ul></li>
+<li>Are provided to the PsychoPy Experiment Runtime in real-time when requested.</li>
+<li><p>Are stored in the ioDataStore; a HDF5 file that uses an event storage structure which constains the same event attributes for each event type as are used by the online accessable event objects during the experiment runtime.</p></li>
+</ul>
+<h4 id="runtime-event-access">Runtime Event Access:</h4>
+<p>Events can be retrieved from the ioHub Process from within an experiment script by either:</p>
+<ul>
+<li>Using the ioHubConnection.getEvents() method.</li>
+<li>Using the devices getEvent() method.</li>
+</ul>
+<p>Events can be <em>cleared</em> from the ioHub Server event buffers using the ioHubConnection.clearEvents() method. Clearing events removes already collected, but not yet requested, events from the ioHub Process buffers so that they not be returned the next time getEvents is called.</p>
+<p>Events can be retrived by the experiment process in one of three formats:</p>
+<ul>
+<li>a tuple of the event attribute values, ordered in the same fashion as the attributes are defined for the event type.</li>
+<li>a dict, where keys are the event attribute names, and values are ... , well the event attribute values.</li>
+<li>a namedtuple, allowing access to event attributes as if the evnt was a tuple, or using dot name notation to access the event attributes. i.e. event.time returns the same value as event[TIME_FIELD_INDEX].</li>
+</ul>
+<p>By default, events are returned as namedtuples.</p>
+<h4 id="iohubconnection.getevents">ioHubConnection.getEvents()</h4>
+<ul>
+<li>Returns <em>all</em> events from all enabled iohub devices that have been received since the last call to ioHubConnection.getEvents() or ioHubConnection.clearEvents(). So note that calling getEvents() not only returns the events, but removes them from the device type independent event buffer (called the global event buffer).</li>
+<li>Events are returned sorted by the ioHub time of each event.</li>
+<li>Events for a specific device type can be requested from the global event buffer by passing the appropriate device name instance string as an arg to the method. In this case, only events from the given device instance are returned and removed from the global buffer.</li>
+</ul>
+<h4 id="device_name.getevents">[device_name].getEvents()</h4>
+<ul>
+<li>Returns events from the device_name device type only, which have been received since the last call to device_name.getEvents() or device_name.clearEvents(). So note that calling device_name.getEvents() not only returns that device's events, but removes them from the device instance dependent event buffer (called a device event buffer).</li>
+<li>Events are returned sorted by the ioHub time of each event.</li>
+<li>Events of a specific event type can be requested by providing the desired event type constant to the device_name.getEvents() method.In this case, only events of the requested event type are returned and removed from the device's event buffer.</li>
+</ul>
+<p><strong>Examples:</strong></p>
+</div>
+<div class="cell border-box-sizing code_cell vbox">
+<div class="input hbox">
+<div class="prompt input_prompt">
+In&nbsp;[47]:
+</div>
+<div class="input_area box-flex1">
+<div class="highlight"><pre><span class="k">def</span> <span class="nf">eventManagementTest</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="n">io</span><span class="o">=</span><span class="n">psychopy</span><span class="o">.</span><span class="n">iohub</span><span class="o">.</span><span class="n">launchHubServer</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
+    <span class="n">mouse</span><span class="o">=</span><span class="n">io</span><span class="o">.</span><span class="n">devices</span><span class="o">.</span><span class="n">mouse</span>
+    <span class="n">keyboard</span><span class="o">=</span><span class="n">io</span><span class="o">.</span><span class="n">devices</span><span class="o">.</span><span class="n">keyboard</span>
+
+    <span class="n">display</span><span class="p">(</span><span class="s">&quot;** Move the mouse and press some keys now...&quot;</span><span class="p">)</span>
+    <span class="n">iohub_events</span><span class="o">=</span><span class="p">[]</span>
+    <span class="n">mouse_events</span><span class="o">=</span><span class="p">[]</span>
+    <span class="n">kb_events</span><span class="o">=</span><span class="p">[]</span>
+    <span class="n">start_time</span><span class="o">=</span><span class="n">Computer</span><span class="o">.</span><span class="n">getTime</span><span class="p">()</span>
+    <span class="k">while</span> <span class="n">Computer</span><span class="o">.</span><span class="n">getTime</span><span class="p">()</span><span class="o">-</span><span class="n">start_time</span><span class="o">&lt;=</span><span class="mf">2.0</span><span class="p">:</span>
+        <span class="n">display</span><span class="p">(</span><span class="s">&quot;Collecting events...&quot;</span><span class="p">)</span>      
+        <span class="n">iohub_events</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">io</span><span class="o">.</span><span class="n">getEvents</span><span class="p">())</span>
+        <span class="n">mouse_events</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">mouse</span><span class="o">.</span><span class="n">getEvents</span><span class="p">())</span>
+        <span class="n">kb_events</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">keyboard</span><span class="o">.</span><span class="n">getEvents</span><span class="p">())</span>
+        <span class="n">io</span><span class="o">.</span><span class="n">wait</span><span class="p">(</span><span class="mf">0.25</span><span class="p">)</span>
+    <span class="n">display</span><span class="p">(</span><span class="s">&quot;** Events Collected Count: io.getEvents={0}, mouse.getEvents()={1}, keyboard.getEvents()={2}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+                                            <span class="nb">len</span><span class="p">(</span><span class="n">iohub_events</span><span class="p">),</span><span class="nb">len</span><span class="p">(</span><span class="n">mouse_events</span><span class="p">),</span><span class="nb">len</span><span class="p">(</span><span class="n">kb_events</span><span class="p">)))</span>
+    
+    <span class="n">io</span><span class="o">.</span><span class="n">quit</span><span class="p">()</span> 
+
+<span class="k">def</span> <span class="nf">eventManagementTest2</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="n">io</span><span class="o">=</span><span class="n">psychopy</span><span class="o">.</span><span class="n">iohub</span><span class="o">.</span><span class="n">launchHubServer</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
+    <span class="c"># clear all event buffers (Global and all Device buffers)</span>
+    <span class="c"># </span>
+    <span class="n">io</span><span class="o">.</span><span class="n">clearEvents</span><span class="p">(</span><span class="s">&#39;all&#39;</span><span class="p">)</span>
+
+    <span class="n">display</span><span class="p">(</span><span class="s">&quot;** Get Only Keyboard Events from io.getEvents(): &quot;</span><span class="p">)</span>
+    <span class="n">start_time</span><span class="o">=</span><span class="n">Computer</span><span class="o">.</span><span class="n">getTime</span><span class="p">()</span>
+    <span class="k">while</span> <span class="n">Computer</span><span class="o">.</span><span class="n">getTime</span><span class="p">()</span><span class="o">-</span><span class="n">start_time</span><span class="o">&lt;=</span><span class="mf">2.0</span><span class="p">:</span>
+        <span class="n">display</span><span class="p">(</span><span class="s">&quot;Collecting kb events...&quot;</span><span class="p">)</span>    
+        <span class="n">kb_events</span><span class="o">=</span><span class="n">io</span><span class="o">.</span><span class="n">getEvents</span><span class="p">(</span><span class="s">&#39;keyboard&#39;</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">ke</span> <span class="ow">in</span> <span class="n">kb_events</span><span class="p">:</span>
+            <span class="n">display</span><span class="p">(</span><span class="n">ke</span><span class="p">)</span>
+        <span class="n">io</span><span class="o">.</span><span class="n">wait</span><span class="p">(</span><span class="mf">0.25</span><span class="p">)</span>
+
+    <span class="n">io</span><span class="o">.</span><span class="n">quit</span><span class="p">()</span> 
+
+<span class="k">def</span> <span class="nf">eventManagementTest3</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="n">io</span><span class="o">=</span><span class="n">psychopy</span><span class="o">.</span><span class="n">iohub</span><span class="o">.</span><span class="n">launchHubServer</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
+    <span class="n">mouse</span><span class="o">=</span><span class="n">io</span><span class="o">.</span><span class="n">devices</span><span class="o">.</span><span class="n">mouse</span>
+
+    <span class="c"># clear all event buffers (Global and all Device buffers)</span>
+    <span class="c"># </span>
+    <span class="n">io</span><span class="o">.</span><span class="n">clearEvents</span><span class="p">(</span><span class="s">&#39;all&#39;</span><span class="p">)</span>
+
+    <span class="n">display</span><span class="p">(</span><span class="s">&quot;** Get Only Mouse Button Press Events from mouse.getEvents(): &quot;</span><span class="p">)</span>
+    <span class="n">start_time</span><span class="o">=</span><span class="n">Computer</span><span class="o">.</span><span class="n">getTime</span><span class="p">()</span>
+    <span class="k">while</span> <span class="n">Computer</span><span class="o">.</span><span class="n">getTime</span><span class="p">()</span><span class="o">-</span><span class="n">start_time</span><span class="o">&lt;=</span><span class="mf">2.0</span><span class="p">:</span>
+        <span class="n">display</span><span class="p">(</span><span class="s">&quot;Collecting mouse press events...&quot;</span><span class="p">)</span>
+        <span class="n">m_events</span><span class="o">=</span><span class="n">mouse</span><span class="o">.</span><span class="n">getEvents</span><span class="p">(</span><span class="n">event_type_id</span><span class="o">=</span><span class="n">EventConstants</span><span class="o">.</span><span class="n">MOUSE_BUTTON_PRESS</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">me</span> <span class="ow">in</span> <span class="n">m_events</span><span class="p">:</span>
+            <span class="n">display</span><span class="p">(</span><span class="n">me</span><span class="p">)</span>
+        <span class="n">io</span><span class="o">.</span><span class="n">wait</span><span class="p">(</span><span class="mf">0.25</span><span class="p">)</span>
+
+    <span class="n">io</span><span class="o">.</span><span class="n">quit</span><span class="p">()</span> 
+</pre></div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell vbox">
+<div class="input hbox">
+<div class="prompt input_prompt">
+In&nbsp;[48]:
+</div>
+<div class="input_area box-flex1">
+<div class="highlight"><pre><span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="n">eventManagementTest</span><span class="p">()</span> 
+</pre></div>
+
+</div>
+</div>
+
+<div class="vbox output_wrapper">
+<div class="output vbox">
+
+
+<div class="hbox output_area"><div class="prompt"></div>
+<div class="box-flex1 output_subarea output_display_data">
+
+
+<pre>
+&apos;** Move the mouse and press some keys now...&apos;
+</pre>
+
+</div>
+</div>
+
+<div class="hbox output_area"><div class="prompt"></div>
+<div class="box-flex1 output_subarea output_display_data">
+
+
+<pre>
+&apos;Collecting events...&apos;
+</pre>
+
+</div>
+</div>
+
+<div class="hbox output_area"><div class="prompt"></div>
+<div class="box-flex1 output_subarea output_display_data">
+
+
+<pre>
+&apos;Collecting events...&apos;
+</pre>
+
+</div>
+</div>
+
+<div class="hbox output_area"><div class="prompt"></div>
+<div class="box-flex1 output_subarea output_display_data">
+
+
+<pre>
+&apos;Collecting events...&apos;
+</pre>
+
+</div>
+</div>
+
+<div class="hbox output_area"><div class="prompt"></div>
+<div class="box-flex1 output_subarea output_display_data">
+
+
+<pre>
+&apos;Collecting events...&apos;
+</pre>
+
+</div>
+</div>
+
+<div class="hbox output_area"><div class="prompt"></div>
+<div class="box-flex1 output_subarea output_display_data">
+
+
+<pre>
+&apos;Collecting events...&apos;
+</pre>
+
+</div>
+</div>
+
+<div class="hbox output_area"><div class="prompt"></div>
+<div class="box-flex1 output_subarea output_display_data">
+
+
+<pre>
+&apos;Collecting events...&apos;
+</pre>
+
+</div>
+</div>
+
+<div class="hbox output_area"><div class="prompt"></div>
+<div class="box-flex1 output_subarea output_display_data">
+
+
+<pre>
+&apos;Collecting events...&apos;
+</pre>
+
+</div>
+</div>
+
+<div class="hbox output_area"><div class="prompt"></div>
+<div class="box-flex1 output_subarea output_display_data">
+
+
+<pre>
+&apos;Collecting events...&apos;
+</pre>
+
+</div>
+</div>
+
+<div class="hbox output_area"><div class="prompt"></div>
+<div class="box-flex1 output_subarea output_display_data">
+
+
+<pre>
+&apos;** Events Collected Count: io.getEvents=163, mouse.getEvents()=157, keyboard.getEvents()=6&apos;
+</pre>
+
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell vbox">
+<div class="input hbox">
+<div class="prompt input_prompt">
+In&nbsp;[49]:
+</div>
+<div class="input_area box-flex1">
+<div class="highlight"><pre><span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="n">eventManagementTest2</span><span class="p">()</span> 
+</pre></div>
+
+</div>
+</div>
+
+<div class="vbox output_wrapper">
+<div class="output vbox">
+
+
+<div class="hbox output_area"><div class="prompt"></div>
+<div class="box-flex1 output_subarea output_display_data">
+
+
+<pre>
+&apos;** Get Only Keyboard Events from io.getEvents(): &apos;
+</pre>
+
+</div>
+</div>
+
+<div class="hbox output_area"><div class="prompt"></div>
+<div class="box-flex1 output_subarea output_display_data">
+
+
+<pre>
+&apos;Collecting kb events...&apos;
+</pre>
+
+</div>
+</div>
+
+<div class="hbox output_area"><div class="prompt"></div>
+<div class="box-flex1 output_subarea output_display_data">
+
+
+<pre>
+&apos;Collecting kb events...&apos;
+</pre>
+
+</div>
+</div>
+
+<div class="hbox output_area"><div class="prompt"></div>
+<div class="box-flex1 output_subarea output_display_data">
+
+<div class="output_html rendered_html">
+
+    <span style="font-family:arial,helvetica,sans-serif;">
+    <ul>
+    <span style="color:#800000;">
+    <strong>
+            KeyboardPressEventNT:
+    </strong>
+    </span>
+    
+    <ul>
+        
+    <li>
+        <strong> experiment_id: </strong> 0
+    </li>
+    
+    <li>
+        <strong> session_id: </strong> 0
+    </li>
+    
+    <li>
+        <strong> device_id: </strong> 0
+    </li>
+    
+    <li>
+        <strong> event_id: </strong> 1
+    </li>
+    
+    <li>
+        <strong> type: </strong> 22
+    </li>
+    
+    <li>
+        <strong> device_time: </strong> 610987.509
+    </li>
+    
+    <li>
+        <strong> logged_time: </strong> 6281.54393073
+    </li>
+    
+    <li>
+        <strong> time: </strong> 6281.54393073
+    </li>
+    
+    <li>
+        <strong> confidence_interval: </strong> 0.0
+    </li>
+    
+    <li>
+        <strong> delay: </strong> 0.0
+    </li>
+    
+    <li>
+        <strong> filter_id: </strong> 0
+    </li>
+    
+    <li>
+        <strong> auto_repeated: </strong> 0
+    </li>
+    
+    <li>
+        <strong> scan_code: </strong> 36
+    </li>
+    
+    <li>
+        <strong> key_id: </strong> 74
+    </li>
+    
+    <li>
+        <strong> ucode: </strong> 106
+    </li>
+    
+    <li>
+        <strong> key: </strong> j
+    </li>
+    
+    <li>
+        <strong> modifiers: </strong> []
+    </li>
+    
+    <li>
+        <strong> window_id: </strong> 67012
+    </li>
+    
+    
+    </ul></ul>
+    
+</div>
+
+</div>
+</div>
+
+<div class="hbox output_area"><div class="prompt"></div>
+<div class="box-flex1 output_subarea output_display_data">
+
+
+<pre>
+&apos;Collecting kb events...&apos;
+</pre>
+
+</div>
+</div>
+
+<div class="hbox output_area"><div class="prompt"></div>
+<div class="box-flex1 output_subarea output_display_data">
+
+<div class="output_html rendered_html">
+
+    <span style="font-family:arial,helvetica,sans-serif;">
+    <ul>
+    <span style="color:#800000;">
+    <strong>
+            KeyboardReleaseEventNT:
+    </strong>
+    </span>
+    
+    <ul>
+        
+    <li>
+        <strong> experiment_id: </strong> 0
+    </li>
+    
+    <li>
+        <strong> session_id: </strong> 0
+    </li>
+    
+    <li>
+        <strong> device_id: </strong> 0
+    </li>
+    
+    <li>
+        <strong> event_id: </strong> 2
+    </li>
+    
+    <li>
+        <strong> type: </strong> 23
+    </li>
+    
+    <li>
+        <strong> device_time: </strong> 610987.634
+    </li>
+    
+    <li>
+        <strong> logged_time: </strong> 6281.67197706
+    </li>
+    
+    <li>
+        <strong> time: </strong> 6281.67197706
+    </li>
+    
+    <li>
+        <strong> confidence_interval: </strong> 0.0
+    </li>
+    
+    <li>
+        <strong> delay: </strong> 0.0
+    </li>
+    
+    <li>
+        <strong> filter_id: </strong> 0
+    </li>
+    
+    <li>
+        <strong> auto_repeated: </strong> 0
+    </li>
+    
+    <li>
+        <strong> scan_code: </strong> 36
+    </li>
+    
+    <li>
+        <strong> key_id: </strong> 74
+    </li>
+    
+    <li>
+        <strong> ucode: </strong> 106
+    </li>
+    
+    <li>
+        <strong> key: </strong> j
+    </li>
+    
+    <li>
+        <strong> modifiers: </strong> []
+    </li>
+    
+    <li>
+        <strong> window_id: </strong> 67012
+    </li>
+    
+    
+    </ul></ul>
+    
+</div>
+
+</div>
+</div>
+
+<div class="hbox output_area"><div class="prompt"></div>
+<div class="box-flex1 output_subarea output_display_data">
+
+<div class="output_html rendered_html">
+
+    <span style="font-family:arial,helvetica,sans-serif;">
+    <ul>
+    <span style="color:#800000;">
+    <strong>
+            KeyboardCharEventNT:
+    </strong>
+    </span>
+    
+    <ul>
+        
+    <li>
+        <strong> experiment_id: </strong> 0
+    </li>
+    
+    <li>
+        <strong> session_id: </strong> 0
+    </li>
+    
+    <li>
+        <strong> device_id: </strong> 0
+    </li>
+    
+    <li>
+        <strong> event_id: </strong> 3
+    </li>
+    
+    <li>
+        <strong> type: </strong> 24
+    </li>
+    
+    <li>
+        <strong> device_time: </strong> 610987.634
+    </li>
+    
+    <li>
+        <strong> logged_time: </strong> 6281.67197706
+    </li>
+    
+    <li>
+        <strong> time: </strong> 6281.67207706
+    </li>
+    
+    <li>
+        <strong> confidence_interval: </strong> 0.0
+    </li>
+    
+    <li>
+        <strong> delay: </strong> 0.0
+    </li>
+    
+    <li>
+        <strong> filter_id: </strong> 0
+    </li>
+    
+    <li>
+        <strong> auto_repeated: </strong> 0
+    </li>
+    
+    <li>
+        <strong> scan_code: </strong> 36
+    </li>
+    
+    <li>
+        <strong> key_id: </strong> 74
+    </li>
+    
+    <li>
+        <strong> ucode: </strong> 106
+    </li>
+    
+    <li>
+        <strong> key: </strong> j
+    </li>
+    
+    <li>
+        <strong> modifiers: </strong> []
+    </li>
+    
+    <li>
+        <strong> window_id: </strong> 67012
+    </li>
+    
+    <li>
+        <strong> press_event: </strong> KeyboardPressEventNT(experiment_id=0, session_id=0, device_id=0, event_id=1, type=22, device_time=610987.509, logged_time=6281.543930728454, time=6281.543930728454, confidence_interval=0.0, delay=0.0, filter_id=0, auto_repeated=0, scan_code=36, key_id=74, ucode=106, key=u'j', modifiers=[], window_id=67012)
+    </li>
+    
+    <li>
+        <strong> duration: </strong> 0.128046336235
+    </li>
+    
+    
+    </ul></ul>
+    
+</div>
+
+</div>
+</div>
+
+<div class="hbox output_area"><div class="prompt"></div>
+<div class="box-flex1 output_subarea output_display_data">
+
+
+<pre>
+&apos;Collecting kb events...&apos;
+</pre>
+
+</div>
+</div>
+
+<div class="hbox output_area"><div class="prompt"></div>
+<div class="box-flex1 output_subarea output_display_data">
+
+<div class="output_html rendered_html">
+
+    <span style="font-family:arial,helvetica,sans-serif;">
+    <ul>
+    <span style="color:#800000;">
+    <strong>
+            KeyboardPressEventNT:
+    </strong>
+    </span>
+    
+    <ul>
+        
+    <li>
+        <strong> experiment_id: </strong> 0
+    </li>
+    
+    <li>
+        <strong> session_id: </strong> 0
+    </li>
+    
+    <li>
+        <strong> device_id: </strong> 0
+    </li>
+    
+    <li>
+        <strong> event_id: </strong> 4
+    </li>
+    
+    <li>
+        <strong> type: </strong> 22
+    </li>
+    
+    <li>
+        <strong> device_time: </strong> 610988.118
+    </li>
+    
+    <li>
+        <strong> logged_time: </strong> 6282.15193228
+    </li>
+    
+    <li>
+        <strong> time: </strong> 6282.15193228
+    </li>
+    
+    <li>
+        <strong> confidence_interval: </strong> 0.0
+    </li>
+    
+    <li>
+        <strong> delay: </strong> 0.0
+    </li>
+    
+    <li>
+        <strong> filter_id: </strong> 0
+    </li>
+    
+    <li>
+        <strong> auto_repeated: </strong> 0
+    </li>
+    
+    <li>
+        <strong> scan_code: </strong> 38
+    </li>
+    
+    <li>
+        <strong> key_id: </strong> 76
+    </li>
+    
+    <li>
+        <strong> ucode: </strong> 108
+    </li>
+    
+    <li>
+        <strong> key: </strong> l
+    </li>
+    
+    <li>
+        <strong> modifiers: </strong> []
+    </li>
+    
+    <li>
+        <strong> window_id: </strong> 67012
+    </li>
+    
+    
+    </ul></ul>
+    
+</div>
+
+</div>
+</div>
+
+<div class="hbox output_area"><div class="prompt"></div>
+<div class="box-flex1 output_subarea output_display_data">
+
+
+<pre>
+&apos;Collecting kb events...&apos;
+</pre>
+
+</div>
+</div>
+
+<div class="hbox output_area"><div class="prompt"></div>
+<div class="box-flex1 output_subarea output_display_data">
+
+<div class="output_html rendered_html">
+
+    <span style="font-family:arial,helvetica,sans-serif;">
+    <ul>
+    <span style="color:#800000;">
+    <strong>
+            KeyboardReleaseEventNT:
+    </strong>
+    </span>
+    
+    <ul>
+        
+    <li>
+        <strong> experiment_id: </strong> 0
+    </li>
+    
+    <li>
+        <strong> session_id: </strong> 0
+    </li>
+    
+    <li>
+        <strong> device_id: </strong> 0
+    </li>
+    
+    <li>
+        <strong> event_id: </strong> 5
+    </li>
+    
+    <li>
+        <strong> type: </strong> 23
+    </li>
+    
+    <li>
+        <strong> device_time: </strong> 610988.258
+    </li>
+    
+    <li>
+        <strong> logged_time: </strong> 6282.28795789
+    </li>
+    
+    <li>
+        <strong> time: </strong> 6282.28795789
+    </li>
+    
+    <li>
+        <strong> confidence_interval: </strong> 0.0
+    </li>
+    
+    <li>
+        <strong> delay: </strong> 0.0
+    </li>
+    
+    <li>
+        <strong> filter_id: </strong> 0
+    </li>
+    
+    <li>
+        <strong> auto_repeated: </strong> 0
+    </li>
+    
+    <li>
+        <strong> scan_code: </strong> 38
+    </li>
+    
+    <li>
+        <strong> key_id: </strong> 76
+    </li>
+    
+    <li>
+        <strong> ucode: </strong> 108
+    </li>
+    
+    <li>
+        <strong> key: </strong> l
+    </li>
+    
+    <li>
+        <strong> modifiers: </strong> []
+    </li>
+    
+    <li>
+        <strong> window_id: </strong> 67012
+    </li>
+    
+    
+    </ul></ul>
+    
+</div>
+
+</div>
+</div>
+
+<div class="hbox output_area"><div class="prompt"></div>
+<div class="box-flex1 output_subarea output_display_data">
+
+<div class="output_html rendered_html">
+
+    <span style="font-family:arial,helvetica,sans-serif;">
+    <ul>
+    <span style="color:#800000;">
+    <strong>
+            KeyboardCharEventNT:
+    </strong>
+    </span>
+    
+    <ul>
+        
+    <li>
+        <strong> experiment_id: </strong> 0
+    </li>
+    
+    <li>
+        <strong> session_id: </strong> 0
+    </li>
+    
+    <li>
+        <strong> device_id: </strong> 0
+    </li>
+    
+    <li>
+        <strong> event_id: </strong> 6
+    </li>
+    
+    <li>
+        <strong> type: </strong> 24
+    </li>
+    
+    <li>
+        <strong> device_time: </strong> 610988.258
+    </li>
+    
+    <li>
+        <strong> logged_time: </strong> 6282.28795789
+    </li>
+    
+    <li>
+        <strong> time: </strong> 6282.28805789
+    </li>
+    
+    <li>
+        <strong> confidence_interval: </strong> 0.0
+    </li>
+    
+    <li>
+        <strong> delay: </strong> 0.0
+    </li>
+    
+    <li>
+        <strong> filter_id: </strong> 0
+    </li>
+    
+    <li>
+        <strong> auto_repeated: </strong> 0
+    </li>
+    
+    <li>
+        <strong> scan_code: </strong> 38
+    </li>
+    
+    <li>
+        <strong> key_id: </strong> 76
+    </li>
+    
+    <li>
+        <strong> ucode: </strong> 108
+    </li>
+    
+    <li>
+        <strong> key: </strong> l
+    </li>
+    
+    <li>
+        <strong> modifiers: </strong> []
+    </li>
+    
+    <li>
+        <strong> window_id: </strong> 67012
+    </li>
+    
+    <li>
+        <strong> press_event: </strong> KeyboardPressEventNT(experiment_id=0, session_id=0, device_id=0, event_id=4, type=22, device_time=610988.118, logged_time=6282.151932281209, time=6282.151932281209, confidence_interval=0.0, delay=0.0, filter_id=0, auto_repeated=0, scan_code=38, key_id=76, ucode=108, key=u'l', modifiers=[], window_id=67012)
+    </li>
+    
+    <li>
+        <strong> duration: </strong> 0.136025611893
+    </li>
+    
+    
+    </ul></ul>
+    
+</div>
+
+</div>
+</div>
+
+<div class="hbox output_area"><div class="prompt"></div>
+<div class="box-flex1 output_subarea output_display_data">
+
+
+<pre>
+&apos;Collecting kb events...&apos;
+</pre>
+
+</div>
+</div>
+
+<div class="hbox output_area"><div class="prompt"></div>
+<div class="box-flex1 output_subarea output_display_data">
+
+<div class="output_html rendered_html">
+
+    <span style="font-family:arial,helvetica,sans-serif;">
+    <ul>
+    <span style="color:#800000;">
+    <strong>
+            KeyboardPressEventNT:
+    </strong>
+    </span>
+    
+    <ul>
+        
+    <li>
+        <strong> experiment_id: </strong> 0
+    </li>
+    
+    <li>
+        <strong> session_id: </strong> 0
+    </li>
+    
+    <li>
+        <strong> device_id: </strong> 0
+    </li>
+    
+    <li>
+        <strong> event_id: </strong> 7
+    </li>
+    
+    <li>
+        <strong> type: </strong> 22
+    </li>
+    
+    <li>
+        <strong> device_time: </strong> 610988.523
+    </li>
+    
+    <li>
+        <strong> logged_time: </strong> 6282.55205097
+    </li>
+    
+    <li>
+        <strong> time: </strong> 6282.55205097
+    </li>
+    
+    <li>
+        <strong> confidence_interval: </strong> 0.0
+    </li>
+    
+    <li>
+        <strong> delay: </strong> 0.0
+    </li>
+    
+    <li>
+        <strong> filter_id: </strong> 0
+    </li>
+    
+    <li>
+        <strong> auto_repeated: </strong> 0
+    </li>
+    
+    <li>
+        <strong> scan_code: </strong> 30
+    </li>
+    
+    <li>
+        <strong> key_id: </strong> 65
+    </li>
+    
+    <li>
+        <strong> ucode: </strong> 97
+    </li>
+    
+    <li>
+        <strong> key: </strong> a
+    </li>
+    
+    <li>
+        <strong> modifiers: </strong> []
+    </li>
+    
+    <li>
+        <strong> window_id: </strong> 67012
+    </li>
+    
+    
+    </ul></ul>
+    
+</div>
+
+</div>
+</div>
+
+<div class="hbox output_area"><div class="prompt"></div>
+<div class="box-flex1 output_subarea output_display_data">
+
+
+<pre>
+&apos;Collecting kb events...&apos;
+</pre>
+
+</div>
+</div>
+
+<div class="hbox output_area"><div class="prompt"></div>
+<div class="box-flex1 output_subarea output_display_data">
+
+<div class="output_html rendered_html">
+
+    <span style="font-family:arial,helvetica,sans-serif;">
+    <ul>
+    <span style="color:#800000;">
+    <strong>
+            KeyboardReleaseEventNT:
+    </strong>
+    </span>
+    
+    <ul>
+        
+    <li>
+        <strong> experiment_id: </strong> 0
+    </li>
+    
+    <li>
+        <strong> session_id: </strong> 0
+    </li>
+    
+    <li>
+        <strong> device_id: </strong> 0
+    </li>
+    
+    <li>
+        <strong> event_id: </strong> 8
+    </li>
+    
+    <li>
+        <strong> type: </strong> 23
+    </li>
+    
+    <li>
+        <strong> device_time: </strong> 610988.695
+    </li>
+    
+    <li>
+        <strong> logged_time: </strong> 6282.72796209
+    </li>
+    
+    <li>
+        <strong> time: </strong> 6282.72796209
+    </li>
+    
+    <li>
+        <strong> confidence_interval: </strong> 0.0
+    </li>
+    
+    <li>
+        <strong> delay: </strong> 0.0
+    </li>
+    
+    <li>
+        <strong> filter_id: </strong> 0
+    </li>
+    
+    <li>
+        <strong> auto_repeated: </strong> 0
+    </li>
+    
+    <li>
+        <strong> scan_code: </strong> 30
+    </li>
+    
+    <li>
+        <strong> key_id: </strong> 65
+    </li>
+    
+    <li>
+        <strong> ucode: </strong> 97
+    </li>
+    
+    <li>
+        <strong> key: </strong> a
+    </li>
+    
+    <li>
+        <strong> modifiers: </strong> []
+    </li>
+    
+    <li>
+        <strong> window_id: </strong> 67012
+    </li>
+    
+    
+    </ul></ul>
+    
+</div>
+
+</div>
+</div>
+
+<div class="hbox output_area"><div class="prompt"></div>
+<div class="box-flex1 output_subarea output_display_data">
+
+<div class="output_html rendered_html">
+
+    <span style="font-family:arial,helvetica,sans-serif;">
+    <ul>
+    <span style="color:#800000;">
+    <strong>
+            KeyboardCharEventNT:
+    </strong>
+    </span>
+    
+    <ul>
+        
+    <li>
+        <strong> experiment_id: </strong> 0
+    </li>
+    
+    <li>
+        <strong> session_id: </strong> 0
+    </li>
+    
+    <li>
+        <strong> device_id: </strong> 0
+    </li>
+    
+    <li>
+        <strong> event_id: </strong> 9
+    </li>
+    
+    <li>
+        <strong> type: </strong> 24
+    </li>
+    
+    <li>
+        <strong> device_time: </strong> 610988.695
+    </li>
+    
+    <li>
+        <strong> logged_time: </strong> 6282.72796209
+    </li>
+    
+    <li>
+        <strong> time: </strong> 6282.72806209
+    </li>
+    
+    <li>
+        <strong> confidence_interval: </strong> 0.0
+    </li>
+    
+    <li>
+        <strong> delay: </strong> 0.0
+    </li>
+    
+    <li>
+        <strong> filter_id: </strong> 0
+    </li>
+    
+    <li>
+        <strong> auto_repeated: </strong> 0
+    </li>
+    
+    <li>
+        <strong> scan_code: </strong> 30
+    </li>
+    
+    <li>
+        <strong> key_id: </strong> 65
+    </li>
+    
+    <li>
+        <strong> ucode: </strong> 97
+    </li>
+    
+    <li>
+        <strong> key: </strong> a
+    </li>
+    
+    <li>
+        <strong> modifiers: </strong> []
+    </li>
+    
+    <li>
+        <strong> window_id: </strong> 67012
+    </li>
+    
+    <li>
+        <strong> press_event: </strong> KeyboardPressEventNT(experiment_id=0, session_id=0, device_id=0, event_id=7, type=22, device_time=610988.523, logged_time=6282.552050971193, time=6282.552050971193, confidence_interval=0.0, delay=0.0, filter_id=0, auto_repeated=0, scan_code=30, key_id=65, ucode=97, key=u'a', modifiers=[], window_id=67012)
+    </li>
+    
+    <li>
+        <strong> duration: </strong> 0.175911123748
+    </li>
+    
+    
+    </ul></ul>
+    
+</div>
+
+</div>
+</div>
+
+<div class="hbox output_area"><div class="prompt"></div>
+<div class="box-flex1 output_subarea output_display_data">
+
+
+<pre>
+&apos;Collecting kb events...&apos;
+</pre>
+
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell vbox">
+<div class="input hbox">
+<div class="prompt input_prompt">
+In&nbsp;[50]:
+</div>
+<div class="input_area box-flex1">
+<div class="highlight"><pre><span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="n">eventManagementTest3</span><span class="p">()</span>
+</pre></div>
+
+</div>
+</div>
+
+<div class="vbox output_wrapper">
+<div class="output vbox">
+
+
+<div class="hbox output_area"><div class="prompt"></div>
+<div class="box-flex1 output_subarea output_display_data">
+
+
+<pre>
+&apos;** Get Only Mouse Button Press Events from mouse.getEvents(): &apos;
+</pre>
+
+</div>
+</div>
+
+<div class="hbox output_area"><div class="prompt"></div>
+<div class="box-flex1 output_subarea output_display_data">
+
+
+<pre>
+&apos;Collecting mouse press events...&apos;
+</pre>
+
+</div>
+</div>
+
+<div class="hbox output_area"><div class="prompt"></div>
+<div class="box-flex1 output_subarea output_display_data">
+
+
+<pre>
+&apos;Collecting mouse press events...&apos;
+</pre>
+
+</div>
+</div>
+
+<div class="hbox output_area"><div class="prompt"></div>
+<div class="box-flex1 output_subarea output_display_data">
+
+<div class="output_html rendered_html">
+
+    <span style="font-family:arial,helvetica,sans-serif;">
+    <ul>
+    <span style="color:#800000;">
+    <strong>
+            MouseButtonPressEventNT:
+    </strong>
+    </span>
+    
+    <ul>
+        
+    <li>
+        <strong> experiment_id: </strong> 0
+    </li>
+    
+    <li>
+        <strong> session_id: </strong> 0
+    </li>
+    
+    <li>
+        <strong> device_id: </strong> 0
+    </li>
+    
+    <li>
+        <strong> event_id: </strong> 2
+    </li>
+    
+    <li>
+        <strong> type: </strong> 32
+    </li>
+    
+    <li>
+        <strong> device_time: </strong> 610997.759
+    </li>
+    
+    <li>
+        <strong> logged_time: </strong> 6291.80134131
+    </li>
+    
+    <li>
+        <strong> time: </strong> 6291.80134131
+    </li>
+    
+    <li>
+        <strong> confidence_interval: </strong> 0.0
+    </li>
+    
+    <li>
+        <strong> delay: </strong> 0.0
+    </li>
+    
+    <li>
+        <strong> filter_id: </strong> 0
+    </li>
+    
+    <li>
+        <strong> display_id: </strong> 0
+    </li>
+    
+    <li>
+        <strong> button_state: </strong> 11
+    </li>
+    
+    <li>
+        <strong> button_id: </strong> 1
+    </li>
+    
+    <li>
+        <strong> pressed_buttons: </strong> 1
+    </li>
+    
+    <li>
+        <strong> x_position: </strong> 204
+    </li>
+    
+    <li>
+        <strong> y_position: </strong> -123
+    </li>
+    
+    <li>
+        <strong> scroll_dx: </strong> 0
+    </li>
+    
+    <li>
+        <strong> scroll_x: </strong> 0
+    </li>
+    
+    <li>
+        <strong> scroll_dy: </strong> 0
+    </li>
+    
+    <li>
+        <strong> scroll_y: </strong> 0
+    </li>
+    
+    <li>
+        <strong> modifiers: </strong> []
+    </li>
+    
+    <li>
+        <strong> window_id: </strong> 1049660
+    </li>
+    
+    
+    </ul></ul>
+    
+</div>
+
+</div>
+</div>
+
+<div class="hbox output_area"><div class="prompt"></div>
+<div class="box-flex1 output_subarea output_display_data">
+
+
+<pre>
+&apos;Collecting mouse press events...&apos;
+</pre>
+
+</div>
+</div>
+
+<div class="hbox output_area"><div class="prompt"></div>
+<div class="box-flex1 output_subarea output_display_data">
+
+
+<pre>
+&apos;Collecting mouse press events...&apos;
+</pre>
+
+</div>
+</div>
+
+<div class="hbox output_area"><div class="prompt"></div>
+<div class="box-flex1 output_subarea output_display_data">
+
+<div class="output_html rendered_html">
+
+    <span style="font-family:arial,helvetica,sans-serif;">
+    <ul>
+    <span style="color:#800000;">
+    <strong>
+            MouseButtonPressEventNT:
+    </strong>
+    </span>
+    
+    <ul>
+        
+    <li>
+        <strong> experiment_id: </strong> 0
+    </li>
+    
+    <li>
+        <strong> session_id: </strong> 0
+    </li>
+    
+    <li>
+        <strong> device_id: </strong> 0
+    </li>
+    
+    <li>
+        <strong> event_id: </strong> 36
+    </li>
+    
+    <li>
+        <strong> type: </strong> 32
+    </li>
+    
+    <li>
+        <strong> device_time: </strong> 610998.398
+    </li>
+    
+    <li>
+        <strong> logged_time: </strong> 6292.42541702
+    </li>
+    
+    <li>
+        <strong> time: </strong> 6292.42541702
+    </li>
+    
+    <li>
+        <strong> confidence_interval: </strong> 0.0
+    </li>
+    
+    <li>
+        <strong> delay: </strong> 0.0
+    </li>
+    
+    <li>
+        <strong> filter_id: </strong> 0
+    </li>
+    
+    <li>
+        <strong> display_id: </strong> 0
+    </li>
+    
+    <li>
+        <strong> button_state: </strong> 11
+    </li>
+    
+    <li>
+        <strong> button_id: </strong> 1
+    </li>
+    
+    <li>
+        <strong> pressed_buttons: </strong> 1
+    </li>
+    
+    <li>
+        <strong> x_position: </strong> 185
+    </li>
+    
+    <li>
+        <strong> y_position: </strong> -195
+    </li>
+    
+    <li>
+        <strong> scroll_dx: </strong> 0
+    </li>
+    
+    <li>
+        <strong> scroll_x: </strong> 0
+    </li>
+    
+    <li>
+        <strong> scroll_dy: </strong> 0
+    </li>
+    
+    <li>
+        <strong> scroll_y: </strong> 0
+    </li>
+    
+    <li>
+        <strong> modifiers: </strong> []
+    </li>
+    
+    <li>
+        <strong> window_id: </strong> 1049660
+    </li>
+    
+    
+    </ul></ul>
+    
+</div>
+
+</div>
+</div>
+
+<div class="hbox output_area"><div class="prompt"></div>
+<div class="box-flex1 output_subarea output_display_data">
+
+
+<pre>
+&apos;Collecting mouse press events...&apos;
+</pre>
+
+</div>
+</div>
+
+<div class="hbox output_area"><div class="prompt"></div>
+<div class="box-flex1 output_subarea output_display_data">
+
+
+<pre>
+&apos;Collecting mouse press events...&apos;
+</pre>
+
+</div>
+</div>
+
+<div class="hbox output_area"><div class="prompt"></div>
+<div class="box-flex1 output_subarea output_display_data">
+
+
+<pre>
+&apos;Collecting mouse press events...&apos;
+</pre>
+
+</div>
+</div>
+
+<div class="hbox output_area"><div class="prompt"></div>
+<div class="box-flex1 output_subarea output_display_data">
+
+<div class="output_html rendered_html">
+
+    <span style="font-family:arial,helvetica,sans-serif;">
+    <ul>
+    <span style="color:#800000;">
+    <strong>
+            MouseButtonPressEventNT:
+    </strong>
+    </span>
+    
+    <ul>
+        
+    <li>
+        <strong> experiment_id: </strong> 0
+    </li>
+    
+    <li>
+        <strong> session_id: </strong> 0
+    </li>
+    
+    <li>
+        <strong> device_id: </strong> 0
+    </li>
+    
+    <li>
+        <strong> event_id: </strong> 77
+    </li>
+    
+    <li>
+        <strong> type: </strong> 32
+    </li>
+    
+    <li>
+        <strong> device_time: </strong> 610998.975
+    </li>
+    
+    <li>
+        <strong> logged_time: </strong> 6293.00941192
+    </li>
+    
+    <li>
+        <strong> time: </strong> 6293.00941192
+    </li>
+    
+    <li>
+        <strong> confidence_interval: </strong> 0.0
+    </li>
+    
+    <li>
+        <strong> delay: </strong> 0.0
+    </li>
+    
+    <li>
+        <strong> filter_id: </strong> 0
+    </li>
+    
+    <li>
+        <strong> display_id: </strong> 0
+    </li>
+    
+    <li>
+        <strong> button_state: </strong> 11
+    </li>
+    
+    <li>
+        <strong> button_id: </strong> 1
+    </li>
+    
+    <li>
+        <strong> pressed_buttons: </strong> 1
+    </li>
+    
+    <li>
+        <strong> x_position: </strong> 275
+    </li>
+    
+    <li>
+        <strong> y_position: </strong> -67
+    </li>
+    
+    <li>
+        <strong> scroll_dx: </strong> 0
+    </li>
+    
+    <li>
+        <strong> scroll_x: </strong> 0
+    </li>
+    
+    <li>
+        <strong> scroll_dy: </strong> 0
+    </li>
+    
+    <li>
+        <strong> scroll_y: </strong> 0
+    </li>
+    
+    <li>
+        <strong> modifiers: </strong> []
+    </li>
+    
+    <li>
+        <strong> window_id: </strong> 1049660
+    </li>
+    
+    
+    </ul></ul>
+    
+</div>
+
+</div>
+</div>
+
+<div class="hbox output_area"><div class="prompt"></div>
+<div class="box-flex1 output_subarea output_display_data">
+
+
+<pre>
+&apos;Collecting mouse press events...&apos;
+</pre>
+
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell vbox">
+<div class="input hbox">
+<div class="prompt input_prompt">
+In&nbsp;[45]:
+</div>
+<div class="input_area box-flex1">
+<div class="highlight"><pre><span class="n">psychopy</span><span class="o">.</span><span class="n">iohub</span><span class="o">.</span><span class="n">ioHubConnection</span><span class="o">.</span><span class="n">getActiveConnection</span><span class="p">()</span><span class="o">.</span><span class="n">quit</span><span class="p">()</span>
+</pre></div>
+
+</div>
+</div>
+
 </div>
 <div class="cell border-box-sizing code_cell vbox">
 <div class="input hbox">
