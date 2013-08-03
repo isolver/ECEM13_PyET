@@ -7,6 +7,7 @@ Py4ET 2013 - Presentation Material
     python_in_30
     psychopy
     iohub
+    common_et_interface
     adding_et_func
     data_processing
     data_viz

@@ -8,14 +8,14 @@ AM: 9 - 12 pm: Python, Psychopy, and the ioHub Common Eye Tracker Interface
   * 9:20 - 9:50am: **Python in 30 minutes**
   * 9:50 - 11:20am: **PsychoPy Overview**:
   
-    * PsychoPy Builder Basics using the Stroop Effect.
-    * PsychoPy Coder Basics using ????? Paradigm.
+    * PsychoPy Builder Basics.
+    * PsychoPy Coder Basics.
   
   * 11:20 - 12:00pm: **PsychoPy.ioHub Event Monitoring Framework:**
 
-    * A. Overview of Supported Devices.
-    * A.2. Review of PsychoPy.ioHub Common Eye Tracking Interface.
-    * B. Intro. to the ioDataStore and HDF5 File Format.
+    * A. Overview
+    * A.2. The Common Eye Tracker Interface.
+    * B. The ioDataStore and HDF5 File Format.
 
 LUNCH: 12 - 1 pm
 ~~~~~~~~~~~~~~~~~
