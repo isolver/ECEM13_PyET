@@ -81,7 +81,7 @@ See the `launchHubServer() documentation <http://www.isolver-solutions.com/iohub
 .. literalinclude:: python_source/launchHubServer.py
     :language: python
     
-Other examples of using launchHubServer (just change the top line):
+Other examples of using launchHubServer (just change the top line of the python file which calls the launchHubServer function):
 
 * Enabling event saving by defining an experiment code::
     

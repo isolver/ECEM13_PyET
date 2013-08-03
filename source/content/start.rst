@@ -8,6 +8,7 @@ Py4ET 2013 - Presentation Material
     psychopy
     iohub
     common_et_interface
+    iodatastore
     adding_et_func
     data_processing
     data_viz
