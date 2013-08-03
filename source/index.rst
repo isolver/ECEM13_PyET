@@ -10,7 +10,7 @@ Who are we?
 ================
 
  * **Jon Peirce** created PsychoPy. He's never used an eye-tracker!
- * **Sol Simpson** was Director of Operations for SR Research Ltd, and has been contributing to PsychoPy for about a year. He's never used PsychoPy's Experiment Builder!
+ * **Sol Simpson** was Director of Operations for SR Research Ltd, and has been contributing to PsychoPy for about a year. He's a PsychoPy *Coder*, and has never used PsychoPy's Experiment Builder!
  * **Michael MacAskill** is a long-standing user/contributor to PsychoPy and eye-tracking studies. He's never used Sol's ioHub!
 
 Schedule 
