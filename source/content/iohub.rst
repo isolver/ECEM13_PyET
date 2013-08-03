@@ -85,6 +85,8 @@ Using launchHubServer()
 
 See the `launchHubServer() documentation <http://www.isolver-solutions.com/iohubdocs/iohub/api_and_manual/iohub_process/launchHubServer.html#the-launchhubserver-function>`_ for function details.
 
+**Source File:** [workshop_materials_root]python_source/launchHubServer.py
+
 .. literalinclude:: python_source/launchHubServer.py
     :language: python
     

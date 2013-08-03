@@ -62,6 +62,8 @@ Reading Saved Data - the ExperimentDataAccessUtility Class
 Creating an instance of ExperimentDataAccessUtility and printing an ioDataStore file structure
 -----------------------------------------------------------------------------------------------
 
+**Source file:** python_source/datastore_examples/printing_datastore_file_structure.py
+
 .. literalinclude:: python_source/iodatastore_examples/printing_datastore_file_structure.py
     :language: python
     
@@ -69,11 +71,15 @@ Creating an instance of ExperimentDataAccessUtility and printing an ioDataStore 
 Accessing Experiment and Session Meta Data
 ------------------------------------------
 
+**Source file:** python_source/datastore_examples/access_exp_metadata.py
+
 .. literalinclude:: python_source/iodatastore_examples/access_exp_metadata.py
     :language: python
     
 Read Any Saved Trial Condition Variables
 ---------------------------------------------
+
+**Source file:** python_source/datastore_examples/read_condition_data.py
 
 .. literalinclude:: python_source/iodatastore_examples/read_condition_data.py
     :language: python
@@ -82,12 +88,16 @@ Read Any Saved Trial Condition Variables
 List Device Event Types Where the Event Count > 0
 --------------------------------------------------
 
+**Source file:** python_source/datastore_examples/access_events_with_data.py
+
 .. literalinclude:: python_source/iodatastore_examples/access_events_with_data.py
     :language: python
     
 
-Retrieving Events based on Query Selection and Grouped by Each Trial Condition Row
------------------------------------------------------------------------------------
+Retrieving Specific Event Fields Grouped by Trial using a Trial Condition Query Selection
+------------------------------------------------------------------------------------------
+
+**Source file:** python_source/datastore_examples/access_single_event_table.py
 
 .. literalinclude:: python_source/iodatastore_examples/access_single_event_table.py
     :language: python
