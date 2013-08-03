@@ -5,7 +5,7 @@ Schedule August 7th, 9.00-16.00
 AM: 9 - 12 pm: Python, Psychopy, and the ioHub Common Eye Tracker Interface
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
   * 9 - 9:20am: **Review Workshop Computer and Software Facilities** 
-  * 9:20 - 9:50am: **Python in 30 minutes**
+  * 9:20 - 9:50am: :ref:`30minPython`
   * 9:50 - 11:20am: **PsychoPy Overview**:
   
     * PsychoPy Builder Basics.

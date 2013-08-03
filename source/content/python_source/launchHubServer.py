@@ -7,7 +7,7 @@ Start the ioHub Process using launchHubServer. When started with no key word arg
 the ioHub Process is started with Display, Keyboard, Mouse, and Experiment devices created
 using their default configurations.
 """
-io=launchHubServer(**kwargs)
+io=launchHubServer()
 
 # get the keyboard device
 #
