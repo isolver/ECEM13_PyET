@@ -1,4 +1,6 @@
-Incorperating Eye tracking into PsychoPy Experiments (TBC - Sol and Jon)
+.. _eyetrackingPsychoPy:
+
+Incorporating Eye tracking into PsychoPy Experiments
 ==========================================================================
 
 Content TBC

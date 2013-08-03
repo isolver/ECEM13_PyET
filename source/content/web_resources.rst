@@ -1,3 +1,5 @@
+.. _onlineResources:
+
 Useful Web Resources
 ========================================
 

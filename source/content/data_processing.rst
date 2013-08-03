@@ -1,4 +1,6 @@
-Processing Recorded Eye Data(TBC - Sol)
+.. _dataProcessing:
+
+Processing Recorded Eye Data (TBC - Sol)
 ==========================================
 
 Content TBC

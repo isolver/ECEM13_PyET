@@ -1,4 +1,6 @@
-PsychoPy Overview (TBC - Jon)
+.. _psychopyOverview:
+
+Introducing PsychoPy (TBC - Jon)
 ==================================
 
 Content TBC

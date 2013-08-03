@@ -1,8 +1,14 @@
-******************************************
-PsychoPy.ioHub Event Monitoring Framework
-****************************************** 
+.. _ioHub:
 
-Typically with experiments we need to be updating the screen and waiting for 
+Introducing the ioHub
+============================================
+
+The ioHub is designed to solve several issues in experiment involving eyetracking and other high-throughput data collection.
+    * Asynchronous from the stimulus presentation thread so that all hardware polling occurs at a high rate (not synchronised to the frame refresh)
+    * Not only asynchronous but running on a separate core (assuming you have more than one). That means intensive data collection doesn't result in sloppy timing in stimulus presentation
+    * covers a wide range of devices, including a :ref:`commonETinterface` for supported eyetrackers, so when you change eyetracker you don't have to start from scratch with your experiment!
+    * can also save high-throughput data to disk using without impacting either stimulus presentation or data collection
+
 
 * PsychoPy.ioHub is a Python package providing a cross-platform device
   event monitoring and storage framework. 
@@ -21,7 +27,7 @@ Typically with experiments we need to be updating the screen and waiting for
 
 
 PsychoPy.ioHub MultiProcess Design
-===================================
+---------------------------------------
 
 .. image:: ./iohub_diagram.png
     :width: 480px
@@ -31,35 +37,36 @@ PsychoPy.ioHub MultiProcess Design
     
 
 Useful PsychoPy.ioHub Links
-============================
+---------------------------------------
 
 Installation
--------------
+~~~~~~~~~~~~~~~~~~~
 
 * ioHub is installed as part of PsychoPy
 
 Documentation
---------------
+~~~~~~~~~~~~~~~~~~~
+
 *Docs are yet to be merged with the core PsychoPy documentation*
 
 * `PsychoPy Docs <http://www.psychopy.org/documentation.html>`_
 * `ioHub Docs <http://www.isolver-solutions.com/iohubdocs/index.html>`_
 
 Support
---------
+~~~~~~~~~~~~~~~~~~~
 
 `PsychoPy User Group <https://groups.google.com/forum/#!forum/psychopy-users>`_
 
 Want to Contribute?
-------------------------
+~~~~~~~~~~~~~~~~~~~~~~
 
 `PsychoPy Developer Group <https://groups.google.com/forum/#!forum/psychopy-dev>`_
 
 High Level ioHub API Review
-=============================
+--------------------------------
 
 Starting the ioHub Server Process
-------------------------------------
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 There are two ways to create a PsychoPy experiment which uses the iohub process. Both menthods ultimately give you access to an instance of the 
 `ioHubConnection Class <http://www.isolver-solutions.com/iohubdocs/iohub/api_and_manual/iohub_process/getting_connected.html#the-iohubconnection-class>`_ 

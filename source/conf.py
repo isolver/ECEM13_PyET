@@ -107,11 +107,11 @@ html_theme = 'sphinxdoc'
 html_title = "%s %s" %(project,version)
 
 # A shorter title for the navigation bar.  Default is the same as html_title.
-html_short_title = "P4N %s" %(version)
+html_short_title = "Py4ET %s" %(version)
 
 # The name of an image file (relative to this directory) to place at the top
 # of the sidebar.
-#html_logo = 'P4N_logo.png'
+#html_logo = 'Py4ET_logo.png'
 
 # The name of an image file (within the static path) to use as favicon of the
 # docs.  This file should be a Windows icon file (.ico) being 16x16 or 32x32
@@ -173,7 +173,7 @@ latex_paper_size = 'a4'
 # Grouping the document tree into LaTeX files. List of tuples
 # (source start file, target name, title, author, documentclass [howto/manual]).
 latex_documents = [
-  ('index')#, 'P4N.tex', u'P4N - Python for Neuroscience',
+  ('index')#, 'Py4ET.tex', u'Py4ET - Python for Eyetracking',
    #u'Jonathan Peirce', 'manual'),
 ]
 

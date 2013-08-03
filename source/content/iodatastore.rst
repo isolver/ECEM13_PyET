@@ -1,8 +1,11 @@
+
+.. _ioDataStore:
+
 ****************************************
-Accessing Events from the ioDataStore
+ioDataStore - saving data
 ****************************************
 
-**ioDataStore == ioHub Data Persistance**
+For relatively small amounts of data you can fetch information from the ioHub while back to the stimulus presentation thread and use PsychoPy's standard data storage facilities. (You would still benefit from the fact that the events had been timestamped by ioHub on collection so it doesn't matter that you only retrieve the data from ioHub once per screen refresh). At other times you might be saving large streams of eye-movement data and you can use ioHub to save the data directly to disk using the HDF5 standardised data format.
 
 What can be Stored
 ===================

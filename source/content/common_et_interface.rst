@@ -1,3 +1,5 @@
+.. _commonETinterface:
+
 ******************************************
 The ioHub Common Eye Tracker Interface
 ****************************************** 
