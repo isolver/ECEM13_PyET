@@ -43,10 +43,10 @@ PM: 1pm - 3:30 pm: Diving into Eye Tracking with Python:
 
   * 1:40 - 2:40pm: :ref:`dataVisualization`
 
-    * D. Plotting Eye Position Traces.
-    * D.2 Scan Path Plotting
-    * D.3. Eye Position Animation
-    * D.4. Fixation Map - Heat Map Creation
+    * :ref:`traceplot`
+    * :ref:`scanpath`
+    * :ref:`heatmap`
+    * :ref:`gazeoverlay`
 
   * 2:40-3:30pm: :ref:`dataProcessing`
 
