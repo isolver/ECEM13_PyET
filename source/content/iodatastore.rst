@@ -55,3 +55,37 @@ Reading Saved Data - the ExperimentDataAccessUtility Class
     * Session and Trial IDs
     * Other Variables Calculated at Runtime, e.g. Trial Start and End Times, Stimulus Onset and Offset Times, etc
     * Any Event Attribute Value
+    
+Creating an instance of ExperimentDataAccessUtility and printing an ioDataStore file structure
+-----------------------------------------------------------------------------------------------
+
+.. literalinclude:: python_source/iodatastore_examples/printing_datastore_file_structure.py
+    :language: python
+    
+
+Accessing Experiment and Session Meta Data
+------------------------------------------
+
+.. literalinclude:: python_source/iodatastore_examples/access_exp_metadata.py
+    :language: python
+    
+Read Any Saved Trial Condition Variables
+---------------------------------------------
+
+.. literalinclude:: python_source/iodatastore_examples/read_condition_data.py
+    :language: python
+    
+
+List Device Event Types Where the Event Count > 0
+--------------------------------------------------
+
+.. literalinclude:: python_source/iodatastore_examples/access_events_with_data.py
+    :language: python
+    
+
+Retrieving Events based on Query Selection and Grouped by Each Trial Condition Row
+-----------------------------------------------------------------------------------
+
+.. literalinclude:: python_source/iodatastore_examples/access_single_event_table.py
+    :language: python
+    
