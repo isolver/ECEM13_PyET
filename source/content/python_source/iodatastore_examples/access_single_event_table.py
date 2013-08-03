@@ -12,12 +12,12 @@ def printQueriedEventsDemo():
     # attributes from the Message Event table, where the event time is between
     # the associated trials condition variables TRIAL_START and TRIAL_END
     # value.
-    # i.e. only get message evnts sent during each trial of the eperiment, not any
+    # i.e. only get message events sent during each trial of the eperiment, not any
     #      sent between trials.
     #
     event_results=experiment_data.getEventAttributeValues(EventConstants.MESSAGE,
                         ['time','device_time','event_id','delay','category','text'], 
-                        conditionVariablesFilter=None,#[['BLOCK','==','E1'],], 
+                        conditionVariablesFilter=None, 
                         startConditions={'time':('>=','@TRIAL_START@')},
                         endConditions={'time':('<=','@TRIAL_END@')})
 
