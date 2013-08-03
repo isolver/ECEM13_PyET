@@ -2,6 +2,8 @@
 PsychoPy.ioHub Event Monitoring Framework
 ****************************************** 
 
+Typically with experiments we need to be updating the screen and waiting for 
+
 * PsychoPy.ioHub is a Python package providing a cross-platform device
   event monitoring and storage framework. 
 * ioHub is free to use and is GPL version 3 licensed.
@@ -13,7 +15,7 @@ PsychoPy.ioHub Event Monitoring Framework
     * Keyboard
     * Mouse
     * Analog to Digital Converter
-    * XInput compatible gamepad
+    * XInput compatible gamepads
     * Remote ioHub Server instances
     * **Eye Trackers, via the ioHub Common Eye Tracking Interface**
 
@@ -34,14 +36,11 @@ Useful PsychoPy.ioHub Links
 Installation
 -------------
 
-* Via `PsychoPy Package <https://code.google.com/p/psychopy/downloads/detail?name=PsychoPy-1.77.02-py2.7.egg&can=2&q=>`_ 
-  or the PsychoPy Python Distributions for `Windows
-  <https://code.google.com/p/psychopy/downloads/detail?name=StandalonePsychoPy-1.77.00-win32.exe&can=2&q=>`_
-  and `OS X <https://code.google.com/p/psychopy/downloads/detail?name=StandalonePsychoPy-1.77.00rc1-OSX.dmg&can=2&q=>`_.
+* ioHub is installed as part of PsychoPy
 
 Documentation
 --------------
-*Docs are yet to be merged.*
+*Docs are yet to be merged with the core PsychoPy documentation*
 
 * `PsychoPy Docs <http://www.psychopy.org/documentation.html>`_
 * `ioHub Docs <http://www.isolver-solutions.com/iohubdocs/index.html>`_
@@ -62,14 +61,14 @@ High Level ioHub API Review
 Starting the ioHub Server Process
 ------------------------------------
 
-There are two ways to create a psychopy experiment which uses the iohub process. Both menthods ultimately give you access to an instance of the 
+There are two ways to create a PsychoPy experiment which uses the iohub process. Both menthods ultimately give you access to an instance of the 
 `ioHubConnection Class <http://www.isolver-solutions.com/iohubdocs/iohub/api_and_manual/iohub_process/getting_connected.html#the-iohubconnection-class>`_ 
 for communication and control of the iohub server:
 
 1. Use the `psychopy.iohub.launchHubServer() <http://www.isolver-solutions.com/iohubdocs/iohub/api_and_manual/iohub_process/launchHubServer.html#the-launchhubserver-function>`_ function.
-2. Use the `psychopy.iohub.client.ioHubExperimentRuntime <http://www.isolver-solutions.com/iohubdocs/iohub/api_and_manual/iohub_process/ioHubExperimentRuntime.html#the-iohubexperimentruntime-class>`_, implementing the classes run() method for your experiment's starting python code.
+2. Use the `psychopy.iohub.client.ioHubExperimentRuntime <http://www.isolver-solutions.com/iohubdocs/iohub/api_and_manual/iohub_process/ioHubExperimentRuntime.html#the-iohubexperimentruntime-class>`_, implementing the class's run() method for your experiment's starting python code.
 
-Each approach has +'s and -'s:
+Each approach has pros and cons:
 
 - Using launchHubServer is quicker when creating an experiment that uses simple devices like the mouse and keyboard. 
 - When using more advanced devices like an eye tracker, using the ioHubExperimentRuntime approach quickly becomes easier to manage, and makes the python code independent of device implementation being used. When using this approach, an understand of the simple file structure expected by the ioHubExperimentRuntime is needed.
@@ -82,26 +81,27 @@ See the `launchHubServer() documentation <http://www.isolver-solutions.com/iohub
 .. literalinclude:: python_source/launchHubServer.py
     :language: python
     
-Other examples of using launchHubServer:
+Other examples of using launchHubServer (just change the top line):
 
 * Enabling event saving by defining an experiment code::
     
     # Start the ioHub, creating an ioDataStore file for experiment code 'silly_exp', and automatically
     # creating an automatic session code.
     #
-    startStopHub(experiment_code='silly_exp')
+    launchHubServer(experiment_code='silly_exp')
     
 * Enabling event saving and specifying the session code::
  
     # Start the ioHub, creating an ioDataStore file for experiment code 'silly_exp', and 
     # creating a session with code name 's_001_m_42'.
     #
-    startStopHub(experiment_code='silly_exp',session_code='s_001_m_42')
+    launchHubServer(experiment_code='silly_exp',session_code='s_001_m_42')
     
 * Enabling event saving and enabling the XInput Gampad Device using all default parameters::
 
     # Start the ioHub, creating an ioDataStore file for experiment code 'silly_exp', and 
     # creating a session with code name 's_001_m_42'. Also enable the ioHub XInput Gamepad support.
-    #    
-    exp_kwargs={'experiment_code':'silly_exp','session_code'='s_001_m_42','xinput.Gamepad'={}}
-    startStopHub(**exp_kwargs)
+    #
+    launchHubServer(experiment_code='silly_exp',
+                    session_code='s_001_m_42',
+                    xinput.Gamepad={})
