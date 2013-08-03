@@ -10,27 +10,38 @@ drop down list. Exact same demo script is used regardless of the
 Eye Tracker hardware used.
 
 Inital Version: May 6th, 2013, Sol Simpson
+Updated: July 30th, Sol
 """
 from psychopy import visual
-from psychopy.iohub import (EventConstants, EyeTrackerConstants, 
-                            getCurrentDateTimeString,
-                            ioHubExperimentRuntime,module_directory,ExperimentVariableProvider)
+from psychopy.iohub import (EventConstants, 
+                                            EyeTrackerConstants, 
+                                            getCurrentDateTimeString,
+                                            ioHubExperimentRuntime,
+                                            module_directory,
+                                            ExperimentVariableProvider)
 import os
 
 class ExperimentRuntime(ioHubExperimentRuntime):
     """
-    Create an experiment using psychopy and the ioHub framework by extending the ioHubExperimentRuntime class. At minimum
-    all that is needed in the __init__ for the new class, here called ExperimentRuntime, is the a call to the
-    ioHubExperimentRuntime __init__ itself.
+    Create an experiment using psychopy and the ioHub framework by extending the ioHubExperimentRuntime class. 
     """
     def run(self,*args):
         """
-        The run method contains your experiment logic. It is equal to what would be in your main psychopy experiment
-        script.py file in a standard psychopy experiment setup. That is all there is too it really.
+        The run method contains your experiment logic.
         """
-
+        
+        # This example uses an xls file to hold the DV and IV information for each trial of the demo.
+        # Each line of the file holds the trial data for one trial.
+        #
+        # ioHub includes a class called the ExperimentVariableProvider which can load the xls file, parse the rows and columns,
+        # perform block level and rial level randomization of the data, 
+        # and return an object that gives you access to the trial data as you need it during the experiment.
+        #
         self.trial_conditions=ExperimentVariableProvider('trial_conditions.xls',
                             'BLOCK',None,False,True)
+        # Inform the ioHub Process that the experiment is using a ExperimentVariableProvider.
+        # ioHub will create a table in the ioDataStore for recording the actual trial variable values in the order run.
+        #
         self.hub.initializeConditionVariableTable(self.trial_conditions) 
                                  
         selected_eyetracker_name=args[0]
@@ -39,7 +50,17 @@ class ExperimentRuntime(ioHubExperimentRuntime):
         display=self.hub.devices.display
         kb=self.hub.devices.kb
         mouse=self.hub.devices.mouse            
-                    
+
+        # Start by running the eye tracker default setup procedure.
+        # if validation results are returned, they would be in the form of a dict,
+        # so print them, otherwise just check that EYETRACKER_OK was returned.       
+        #
+        result=tracker.runSetupProcedure()
+        if isinstance(result,dict):
+            print "Validation Accuracy Results: ", result
+        elif result != EyeTrackerConstants.EYETRACKER_OK:
+            print "An error occurred during eye tracker user setup: ",EyeTrackerConstants.getName(result)
+            
         # Create a psychopy window, full screen resolution, full screen mode...
         #
         res=display.getPixelResolution()
@@ -53,23 +74,7 @@ class ExperimentRuntime(ioHubExperimentRuntime):
         # Hide the 'system mouse cursor'
         #        
         mouse.setSystemCursorVisibility(False)
-
-        # Start by running the eye tracker default setup procedure.
-        # if validation results are returned, they would be in the form of a dict,
-        # so print them, otherwise just check that EYETRACKER_OK was returned.
-        #
-        # minimize the psychopy experiment window
-        #
-        window.winHandle.minimize()
-        result=tracker.runSetupProcedure()
-        if isinstance(result,dict):
-            print "Validation Accuracy Results: ", result
-        elif result != EyeTrackerConstants.EYETRACKER_OK:
-            print "An error occurred during eye tracker user setup: ",EyeTrackerConstants.getName(result)
-        # restore the psychopy experiment window
-        #
-        window.winHandle.maximize()
-        window.winHandle.activate()
+        
         # Create a dict of image stim for trials and a gaze blob to show gaze position.
         #
         display_coord_type=display.getCoordinateType()
@@ -79,10 +84,15 @@ class ExperimentRuntime(ioHubExperimentRuntime):
         for iname in image_names:
             image_cache[iname]=visual.ImageStim(window, image=os.path.join('./images/',iname), 
                         name=iname,units=display_coord_type)
-                        
+        
+        # Create a dot to use for the Gaze Cursor.
+        #
         gaze_dot =visual.GratingStim(window,tex=None, mask="gauss", 
                                      pos=(0,0 ),size=(66,66),color='green', 
                                                         units=display_coord_type)
+        
+        # Create a Text Stim for use on /instuction/ type screens
+        #
         instructions_text_stim = visual.TextStim(window, text='', pos = [0,0], height=24, 
                        color=[-1,-1,-1], colorSpace='rgb',alignHoriz='center', alignVert='center',wrapWidth=window.size[0]*.9)
 
@@ -144,15 +154,27 @@ class ExperimentRuntime(ioHubExperimentRuntime):
                         self.hub.wait(0.2)
         
                     # So request to start trial has occurred...
-                    # Clear the screen, start recording eye data, and clear all events
-                    # received to far.
+                    # Clear the screen, 
                     #
                     flip_time=window.flip()
+                    
+                    # Set the value of some of the variables to be saved in the ioDataStore
+                    #
                     trial['session_id']=self.hub.getSessionID()
                     trial['trial_id']=t+1 
                     trial['TRIAL_START']=flip_time
+                    
+                    # Send a msg to the ioHub indicating that the trial started, and the time of
+                    # the first retrace displaying the trial stm.
+                    #
                     self.hub.sendMessageEvent(text="TRIAL_START",sec_time=flip_time)
+                    
+                    # Clear all the events received prior to the trial start.
+                    #
                     self.hub.clearEvents('all')
+                    
+                    # Start Recording Eye Data
+                    #
                     tracker.setRecordingState(True)            
                     
                     # Get the image name for this trial
@@ -165,7 +187,7 @@ class ExperimentRuntime(ioHubExperimentRuntime):
                     while run_trial is True:
                         # Get the latest gaze position in dispolay coord space..
                         #
-                        gpos=tracker.getLastGazePosition()
+                        gpos=tracker.getPosition()
                         if isinstance(gpos,(tuple,list)):
                             # If we have a gaze position from the tracker, draw the 
                             # background image and then the gaze_cursor.
@@ -191,7 +213,7 @@ class ExperimentRuntime(ioHubExperimentRuntime):
                         else:
                             self.hub.sendMessageEvent("IMAGE_UPDATE %s [NO GAZE]"%(iname),sec_time=flip_time)
          
-                        # Check any new keyboard char events for a space key.
+                        # Check any new keyboard press events by a space key.
                         # If one is found, set the trial end variable.
                         #
                         for event in kb.getEvents(event_type_id=EventConstants.KEYBOARD_PRESS):
@@ -199,21 +221,28 @@ class ExperimentRuntime(ioHubExperimentRuntime):
                                 run_trial=False
                                 break
                 
-                    # So the trial has ended, send a message to the DataStore
-                    # with the trial end time and stop recording eye data.
-                    # In this example, we have no use for any eye data between trials, so why save it.
+                    # So the trial has ended, so update the trial end time condition value, 
+                    # and send a message to the DataStore with the trial end time.
                     #
                     flip_time=window.flip()
                     trial['TRIAL_END']=flip_time
                     self.hub.sendMessageEvent(text="TRIAL_END %d"%t,sec_time=flip_time)
+                    
+                    # Stop recording eye data.
+                    # In this example, we have no use for any eye data between trials, so why save it.
+                    #
                     tracker.setRecordingState(False)
-                    # Save the Experiment Condition Variable Data for this trial to the
+                    
+                    # Save the experiment condition variable vlues for this trial to the
                     # ioDataStore.
                     #
-                    self.hub.addRowToConditionVariableTable(trial.tolist())             
+                    self.hub.addRowToConditionVariableTable(trial.tolist()) 
                     self.hub.clearEvents('all')
                     t+=1
 
+        # All blocks and trial sets have been run, so end the experiment.
+        #
+        
         # Disconnect the eye tracking device.
         #
         tracker.setConnectionState(False)
