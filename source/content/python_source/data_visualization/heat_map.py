@@ -103,7 +103,6 @@ fix_pos=np.column_stack( (np.random.randint(*fixation_y_range, size=sim_fix_coun
 # 50% later.
 #
 fixation_map=np.zeros((image_size[0]*2,image_size[1]*2))
-print 'fixation_map:',fixation_map.shape
 
 # Apply Gaussian Mask for each fixation position to the density array
 # based on the created fixation event data.
@@ -121,7 +120,6 @@ else:
         fixation_map[fy-ghh:fy+ghh+1,fx-ghw:fx+ghw+1]+=gauss
 
 fixation_map=fixation_map[ihw:image_size[0]+ihw,ihh:image_size[1]+ihh]
-print 'fixation_map2:',fixation_map.shape
 # Apply fixation duration and distribution pertentile heuristics to heat map:
 #
 fixation_map_min=fixation_map.min()
