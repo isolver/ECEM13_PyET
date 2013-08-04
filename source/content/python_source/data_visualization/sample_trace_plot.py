@@ -13,7 +13,7 @@ import numpy as np
 
 # Load an ioDataStore file containing 120 Hz sample data from a
 # remote eye tracker that was recording both eyes. In the plotting example
-dataAccessUtil=ExperimentDataAccessUtility('..\hdf5_files','remote_data.hdf5', experimentCode=None,sessionCodes=[])
+dataAccessUtil=ExperimentDataAccessUtility('../hdf5_files','remote_data.hdf5', experimentCode=None,sessionCodes=[])
 
 ##### STEP A. #####
 # Retrieve a subset of the BINOCULAR_EYE_SAMPLE event attributes, for events that occurred
@@ -22,12 +22,13 @@ dataAccessUtil=ExperimentDataAccessUtility('..\hdf5_files','remote_data.hdf5', e
 #
 event_type=EventConstants.BINOCULAR_EYE_SAMPLE
 retrieve_attributes=('time','left_gaze_x','left_gaze_y','left_pupil_measure1',
-'right_gaze_x','right_gaze_y','right_pupil_measure1','status')
+            'right_gaze_x','right_gaze_y','right_pupil_measure1','status')
 trial_event_data=dataAccessUtil.getEventAttributeValues(event_type,
-retrieve_attributes,
-conditionVariablesFilter=None,
-startConditions={'time':('>=','@TRIAL_START@')},
-endConditions={'time':('<=','@TRIAL_END@')})
+            retrieve_attributes,
+            conditionVariablesFilter=None,
+            startConditions={'time':('>=','@TRIAL_START@')},
+            endConditions={'time':('<=','@TRIAL_END@')},
+            )
 
 # No need to keep the hdf5 file open anymore...
 #
@@ -60,23 +61,23 @@ for trial_index,trial_samples in enumerate(trial_event_data):
     # index for a given period of valid data.
     #
     left_valid_data_periods=processSampleEventGaps(left_gaze_x,left_gaze_y,
-    left_pupil_size,
-    left_eye_invalid_data_masks,
-    'clear')
-    
+        left_pupil_size,
+        left_eye_invalid_data_masks,
+        'clear')
+
     # Get the needed right eye sample field arrays
     #
     right_gaze_x=trial_samples.right_gaze_x
     right_gaze_y=trial_samples.right_gaze_y
     right_pupil_size=trial_samples.right_pupil_measure1
-    
+
     # Process the right eye fields
     #
     right_valid_data_periods=processSampleEventGaps(right_gaze_x,right_gaze_y,
-    right_pupil_size,
-    right_eye_invalid_data_masks,
-    'clear')
-    
+        right_pupil_size,
+        right_eye_invalid_data_masks,
+        'clear')
+
     # get the array of sample times for the current trial
     time=trial_samples.time
     ##### STEP C. #####
@@ -86,7 +87,7 @@ for trial_index,trial_samples in enumerate(trial_event_data):
     # Get the range to use for the x axis
     tmin=time.min()//1
     tmax=time.max()//1+1
-    
+
     #Create a 12x8 inch figure
     fig = plt.figure(figsize=(12,8))
     # Create a subplot for the left eye, 2,1,1 means the subplot
@@ -101,13 +102,13 @@ for trial_index,trial_samples in enumerate(trial_event_data):
     # height of the sub plot.
     trans = mtransforms.blended_transform_factory(left_axis.transData, left_axis.transAxes)
     left_axis.fill_between(time, 0, 1, where=left_pupil_size==0,
-    facecolor='DarkRed',
-    alpha=0.5, transform=trans)
+            facecolor='DarkRed',
+            alpha=0.5, transform=trans)
     #text(0.5, 0.95, 'test', transform=fig.transFigure, horizontalalignment='center')
     left_axis.set_ylabel('Position (pixels)')
     # Left Eye Sample Sub Plot
     left_axis.set_title("Left Eye Position", fontsize=12)
-    
+
     # Resize the plot x axis by 85% so that the legend , which is outside
     # the plot, will still fit in the matplotlib window.
     #
@@ -125,15 +126,15 @@ for trial_index,trial_samples in enumerate(trial_event_data):
     plt.xticks(np.arange(tmin,tmax,0.5),rotation='vertical')
     trans = mtransforms.blended_transform_factory(right_axis.transData, right_axis.transAxes)
     right_axis.fill_between(time, 0, 1, where=right_pupil_size==0,
-    facecolor='DarkRed',
-    alpha=0.5, transform=trans)
+            facecolor='DarkRed',
+            alpha=0.5, transform=trans)
     right_axis.set_xlabel('Time')
     right_axis.set_ylabel('Position (Pixels)')
     right_axis.set_title("Right Eye Position", fontsize=12)
     plt.subplots_adjust(hspace=0.35, bottom=0.125)
     fig.suptitle("Eye Sample Data For Trial Index %d"%(trial_index+1),fontsize=14)
-    
+
     # Show each trial's eye sample trace. The program will block until you close
     # the trial plot, and will then open the next trial plt.
     #
-    plt.show() 
+    plt.show()
