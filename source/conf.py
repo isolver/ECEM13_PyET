@@ -173,9 +173,9 @@ latex_paper_size = 'a4'
 # Grouping the document tree into LaTeX files. List of tuples
 # (source start file, target name, title, author, documentclass [howto/manual]).
 latex_documents = [
-  ('index')#, 'Py4ET.tex', u'Py4ET - Python for Eyetracking',
-   #u'Jonathan Peirce', 'manual'),
-]
+  ('index', 'Py4ET.tex', u'Py4ET - Python for Eyetracking',
+   u'Sol Simpson and Jon Peirce', 'manual'),
+   ]
 
 latex_elements = { 'classoptions': ',openany,oneside', 'babel' : '\\usepackage[english]{babel}' }
 

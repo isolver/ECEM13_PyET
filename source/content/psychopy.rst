@@ -1,7 +1,7 @@
 .. _psychopyOverview:
 
-Introducing PsychoPy (TBC - Jon)
-==================================
+9:50 - 11:20am Introducing PsychoPy
+=========================================
 
 General issues:
 

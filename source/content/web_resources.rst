@@ -1,7 +1,7 @@
 .. _onlineResources:
 
-Useful Web Resources
-========================================
+Online Python Resources and Q&A
+======================================================
 
 This page contains links to web resources that are valuable sources of information
 on Python, useful Python Tools, Python in Neuroscience or Psychology, and 

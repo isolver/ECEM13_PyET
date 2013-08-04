@@ -19,7 +19,7 @@ matplotlib using the windowed graph viewer.
     :language: python
 
 Example Plots
-==============
+-------------------
 
 Left and Right Eye Position Traces using MatPlotLib
 

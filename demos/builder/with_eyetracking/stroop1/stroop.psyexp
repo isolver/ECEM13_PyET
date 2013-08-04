@@ -75,7 +75,7 @@
         <Param name="durationEstim" val="" valType="code" updates="None"/>
         <Param name="mask" val="circle" valType="str" updates="constant"/>
         <Param name="pos" val="$[x,y]" valType="code" updates="set every frame"/>
-        <Param name="interpolate" val="" valType="str" updates="constant"/>
+        <Param name="interpolate" val="linear" valType="str" updates="constant"/>
         <Param name="startEstim" val="" valType="code" updates="None"/>
         <Param name="units" val="pix" valType="str" updates="None"/>
         <Param name="texture resolution" val="128" valType="code" updates="constant"/>
@@ -111,6 +111,16 @@
         <Param name="End Routine" val="if eyetracker:&#10;    #add eye-track data to data file&#10;    trials.addData(&quot;heldFixation&quot;, heldFixation)&#10;" valType="extendedCode" updates="constant"/>
         <Param name="End Experiment" val="if expInfo['Eye Tracker']:&#10;    io.quit()" valType="extendedCode" updates="constant"/>
       </CodeComponent>
+      <StaticComponent name="ISI">
+        <Param name="code" val="" valType="code" updates="None"/>
+        <Param name="name" val="ISI" valType="code" updates="None"/>
+        <Param name="stopVal" val="0.5" valType="code" updates="constant"/>
+        <Param name="durationEstim" val="" valType="code" updates="None"/>
+        <Param name="startEstim" val="" valType="code" updates="None"/>
+        <Param name="startType" val="time (s)" valType="str" updates="None"/>
+        <Param name="stopType" val="duration (s)" valType="str" updates="None"/>
+        <Param name="startVal" val="0.0" valType="code" updates="None"/>
+      </StaticComponent>
     </Routine>
     <Routine name="instruct">
       <TextComponent name="instrText">

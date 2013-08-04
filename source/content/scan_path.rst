@@ -30,7 +30,7 @@ E. Applying a color map to the scan path data using the time of the scan path da
     :language: python
 
 Example Plots
-==============
+-------------------
 
 Right Eye Scan Path Using Eye Sample Data. Created with MatPlotLib
 
