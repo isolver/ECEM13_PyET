@@ -5,8 +5,8 @@ Eye Data Visualization
 ***************************************
 
 There are seemingly endless ways to visualize and plot data collected from eye 
-tracking devices. Which types of visualization are most relevent depends directly
-on the application / experimental paridigm the eye tracker is being used in, 
+tracking devices. Which types of visualization are most relevant depends directly
+on the application / experimental paradigm the eye tracker is being used in, 
 and the type of data analysis that will be performed on the resulting data collected.
 
 We will review example implementations for the following data visualization / plotting methods:
