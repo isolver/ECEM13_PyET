@@ -5,11 +5,11 @@
     <Param name="Monitor" val="testMonitor" valType="str" updates="None"/>
     <Param name="Enable Escape" val="True" valType="bool" updates="None"/>
     <Param name="color" val="black" valType="str" updates="None"/>
-    <Param name="Window size (pixels)" val="[1920, 1080]" valType="code" updates="None"/>
+    <Param name="Window size (pixels)" val="[2560, 1440]" valType="code" updates="None"/>
     <Param name="Full-screen window" val="True" valType="bool" updates="None"/>
     <Param name="colorSpace" val="rgb" valType="str" updates="None"/>
     <Param name="Save log file" val="True" valType="bool" updates="None"/>
-    <Param name="Experiment info" val="{u'Eye Tracker': u'False', u'Participant': u''}" valType="code" updates="None"/>
+    <Param name="Experiment info" val="{u'Eye Tracker': u'', u'Participant': u''}" valType="code" updates="None"/>
     <Param name="Save excel file" val="True" valType="bool" updates="None"/>
     <Param name="Save wide csv file" val="True" valType="bool" updates="None"/>
     <Param name="Save psydat file" val="True" valType="bool" updates="None"/>
@@ -104,7 +104,7 @@
         <Param name="store" val="last key" valType="str" updates="constant"/>
       </KeyboardComponent>
       <CodeComponent name="eye_track_code">
-        <Param name="Begin Experiment" val="maintain_fix_pix_boundary=66.0&#10;from psychopy.iohub import launchHubServer,EventConstants&#10;if expInfo['Eye Tracker']:&#10;    io=launchHubServer()&#10;    iokeyboard=io.devices.keyboard&#10;    eyetracker=io.devices.mouse&#10;    if io.getDevice('eyetracker'):&#10;        eyetracker=io.getDevice('eyetracker')&#10;    display_gaze=False&#10;    x,y=0,0" valType="extendedCode" updates="constant"/>
+        <Param name="Begin Experiment" val="maintain_fix_pix_boundary=66.0&#10;eyetracker = False #will change if we get one!&#10;if expInfo['Eye Tracker']:&#10;    from psychopy.iohub import launchHubServer,EventConstants&#10;    io=launchHubServer()&#10;    iokeyboard=io.devices.keyboard&#10;    mouse=io.devices.mouse&#10;    if io.getDevice('eyetracker'):&#10;        eyetracker=io.getDevice('eyetracker')&#10;    display_gaze=False&#10;    x,y=0,0" valType="extendedCode" updates="constant"/>
         <Param name="name" val="eye_track_code" valType="code" updates="None"/>
         <Param name="Each Frame" val="if eyetracker:&#10;    # check for 'g' key press to toggle gaze cursor visibility&#10;    iokeys=iokeyboard.getEvents(EventConstants.KEYBOARD_PRESS)&#10;    for iok in iokeys:&#10;        if iok.key==u'g':&#10;            display_gaze=not display_gaze&#10;    # get /eye tracker gaze/ position &#10;    x,y=eyetracker.getPosition()&#10;    d=np.sqrt(x**2+y**2)&#10;    if d&gt;maintain_fix_pix_boundary:&#10;        heldFixation = False #unless otherwise" valType="extendedCode" updates="constant"/>
         <Param name="Begin Routine" val="if eyetracker:&#10;    heldFixation = True #unless otherwise&#10;    io.clearEvents('all')&#10;" valType="extendedCode" updates="constant"/>

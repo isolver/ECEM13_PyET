@@ -20,8 +20,6 @@ Learning Python
     * http://www.Codecademy.com/
     * `Dive into Python <http://www.diveintopython.net/>`_
 
-??????
-
 Python Tools
 ~~~~~~~~~~~~~
 
