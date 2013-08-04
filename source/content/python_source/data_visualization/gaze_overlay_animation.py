@@ -30,7 +30,7 @@ TRIAL_ID=1 #we'll just play back a single trial here
 et_sampling_rate=1000.0 #eye tracker sampling rate
 desired_playback_rate=20 #what rate (in Hz) will we update our figure (not every eye frame!)
 
-# Retrieve a subset of the BINOCULAR_EYE_SAMPLE event attributes, for events that occurred
+# Retrieve a subset of the MONOCULAR_EYE_SAMPLE event attributes, for events that occurred
 # between each time period defined by the TRIAL_START and TRIAL_END trial variables of each entry
 # in the trial_conditions data table.
 event_type=EventConstants.MONOCULAR_EYE_SAMPLE
