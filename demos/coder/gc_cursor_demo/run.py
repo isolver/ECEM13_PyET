@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-eye_tracker/run.py
+gc_cursor_demo/run.py
 
 Demonstrates the ioHub Common EyeTracking Interface by displaying a gaze cursor
 at the currently reported gaze position on an image background. 
