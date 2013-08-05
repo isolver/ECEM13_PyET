@@ -3,7 +3,7 @@
 This source file can be found in demos\coder\getting_started.py
 
 Demonstrates the ioHub Common EyeTracking Interface core functionality only:
-    A) Initial ioHub with an Eye Tracker device.
+    A) Initialize ioHub with an Eye Tracker device.
     B) Perform the Eye Tracker Setup logic ( resulting in a Calibrated ET system if all goes well)
     C) Start Recording Eye Data
     D) Print Last Received Eye Event every 0.25 sec.
