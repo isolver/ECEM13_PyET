@@ -20,7 +20,7 @@ Inital Version: August 1st, 2013, Sol Simpson
 from psychopy.iohub import EventConstants,ioHubConnection
 import os
 
-io=ioHubConnection(ioHubConfigAbsPath=os.path.abspath('./iohub_config.yaml'))
+io=ioHubConnection(ioHubConfigAbsPath=os.path.abspath('./SMI_iview_std.yaml'))
 
 keyboard=io.devices.keyboard
 eyetracker=io.devices.tracker
