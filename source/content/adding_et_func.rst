@@ -124,7 +124,7 @@ Notes:
 Each Frame
 ~~~~~~~~~~~~~~~~
 
-Now we need to check whether gaze has strayed outside the valid fixation window. But we'll also check whether the user pressed 'g' and if so we'll toggle the `display_gaze` variable.
+Now we need to check whether gaze has strayed outside the valid fixation window. But we'll also check whether the user pressed 'g' and if so we'll toggle the `display_gaze` variable.::
 
     if eyetracker:
         # check for 'g' key press to toggle gaze cursor visibility
