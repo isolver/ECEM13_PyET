@@ -37,25 +37,25 @@ io=ioHubConnection(io_config)
 
 keyboard=io.devices.keyboard
 eyetracker=io.devices.tracker
-   
+
 # Start by running the eye tracker default setup procedure.
 # The details of the setup procedure (calibration, validation, etc)
 # are unique to each implementation of the Common Eye Tracker Interface.
 # All have the common end goal of calibrating the eye tracking system
 # prior to data collection.
 #
-# Please see the eye tracker interface implementation details for the 
+# Please see the eye tracker interface implementation details for the
 # hardware being used at:
 # http://www.isolver-solutions.com/iohubdocs/iohub/api_and_manual/device_details/eyetracker.html#eye-tracking-hardware-implementations
 #
 eyetracker.runSetupProcedure()
-            
+
 # Start Recording Eye Data
 #
-eyetracker.setRecordingState(True)            
+eyetracker.setRecordingState(True)
 
 # Clear any events already in the iohub on-line event buffers
-#        
+#
 io.clearEvents('all')
 
 # While the space key is not pressed
@@ -65,11 +65,23 @@ while not [event for event in keyboard.getEvents(event_type_id=EventConstants.KE
     # wait 1/4 second
     #
     io.wait(0.25)
+<<<<<<< HEAD
 print "Stopped Data Collection." 
 # Space key was pressed, so stop recording from the eye tracker 
 # and disconnect it from the iohub.           
+=======
+    # Lets also get the latest gaze position
+    #
+    gpos=eyetracker.getLastGazePosition()
+    # And print it
+    #
+    print '** CURRENT GAZE POSITION: ',gpos
+
+# Space key was pressed, so stop recording from the eye tracker
+# and disconnect it from the iohub.
+>>>>>>> 6b83df98c6801985974e0d2f25d524cbec1d184c
 #
-eyetracker.setRecordingState(False)                    
+eyetracker.setRecordingState(False)
 eyetracker.setConnectionState(False)
 
 # quit the ioHub process
