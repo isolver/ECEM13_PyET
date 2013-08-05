@@ -133,8 +133,7 @@ class ExperimentRuntime(ioHubExperimentRuntime):
         self.hub.clearEvents('all')
         while not kb.getEvents():
             self.hub.wait(0.2)
-            
-        
+                   
         # Send some information to the ioDataStore as experiment messages,
         # including the experiment and session id's, the calculated pixels per 
         # degree, display resolution, etc. 

@@ -18,23 +18,17 @@ using CODER, please see the gc_window example in this directory.
 
 from psychopy.iohub import EventConstants,ioHubConnection,load,Loader
 from psychopy.data import getDateStr
-import os
-
-# Specify the iohub device config file to use for the
-# demo. Here we are selecting the device config that includes the SMI eye tracker.
-#
-config_file_path=os.path.abspath('./SMI_iview_std.yaml')
 
 # Load the specified iohub configuration file
 # converting it to a python dict.
 #
-io_config=load(file(config_file_path,'r'), Loader=Loader)
+io_config=load(file('./SMI_iview_std.yaml','r'), Loader=Loader)
 
 # Add / Update the session code to be unique. Here we use the psychopy
 # getDateStr() function for session code generation
 #
 session_info=io_config.get('data_store').get('session_info')
-session_info.update(code="S_{0}".format(getDateStr()))
+session_info.update(code="S_%s"%(getDateStr()))
 
 # Create an ioHubConnection instance, which starts the ioHubProcess, and
 # informs it of the requested devices and their configurations.
@@ -66,17 +60,12 @@ io.clearEvents('all')
 
 # While the space key is not pressed
 #
+print "Starting Data Collection..."
 while not [event for event in keyboard.getEvents(event_type_id=EventConstants.KEYBOARD_PRESS) if event.key == ' ']:
     # wait 1/4 second
     #
     io.wait(0.25)
-    # Lets also get the latest gaze position
-    #
-    gpos=eyetracker.getLastGazePosition()
-    # And print it
-    #
-    print '** CURRENT GAZE POSITION: ',gpos
-
+print "Stopped Data Collection." 
 # Space key was pressed, so stop recording from the eye tracker 
 # and disconnect it from the iohub.           
 #
