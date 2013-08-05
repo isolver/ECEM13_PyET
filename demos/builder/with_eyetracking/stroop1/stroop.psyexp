@@ -109,7 +109,7 @@
         <Param name="Each Frame" val="if eyetracker:&#10;    # check for 'g' key press to toggle gaze cursor visibility&#10;    iokeys=iokeyboard.getEvents(EventConstants.KEYBOARD_PRESS)&#10;    for iok in iokeys:&#10;        if iok.key==u'g':&#10;            display_gaze=not display_gaze&#10;    # get /eye tracker gaze/ position &#10;    gpos=eyetracker.getPosition()&#10;    if type(gpos) in [list,tuple]:&#10;        x,y=gpos&#10;        d=np.sqrt(x**2+y**2)&#10;        if d&gt;maintain_fix_pix_boundary:&#10;            heldFixation = False #unless otherwise" valType="extendedCode" updates="constant"/>
         <Param name="Begin Routine" val="if eyetracker:&#10;    heldFixation = True #unless otherwise&#10;    io.clearEvents('all')&#10;    eyetracker.setRecordingState(True)&#10;" valType="extendedCode" updates="constant"/>
         <Param name="End Routine" val="if eyetracker:&#10;    eyetracker.setRecordingState(False)&#10;    #add eye-track data to data file&#10;    trials.addData(&quot;heldFixation&quot;, heldFixation)&#10;    " valType="extendedCode" updates="constant"/>
-        <Param name="End Experiment" val="if expInfo['Eye Tracker']:&#10;    eyetracker.setConnectionState(False)&#10;    io.quit()" valType="extendedCode" updates="constant"/>
+        <Param name="End Experiment" val="if eyetracker:&#10;    eyetracker.setConnectionState(False)&#10;    io.quit()" valType="extendedCode" updates="constant"/>
       </CodeComponent>
       <StaticComponent name="ISI">
         <Param name="code" val="" valType="code" updates="None"/>

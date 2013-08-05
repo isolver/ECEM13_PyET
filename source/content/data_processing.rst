@@ -93,8 +93,57 @@ for use in eye event parsing algorithms (well, parsers based on velocity thresho
 Data is converted from pixel to visual degree coordinate space before being
 passed to the velocity and acceleration algorithms.
 
-.. literalinclude:: python_source/data_processing/velocity_accelleration.py
-    :language: python
+Velocity Calculation
+~~~~~~~~~~~~~~~~~~~~~
+
+The following function can be used to calculate the instantaneous velocity from eye position sample data::
+
+    def calculateVelocity(time,degrees_x,degrees_y=None):
+        """
+        Calculate the instantaneous velocity (degrees / second) for data points in 
+        degrees_x and (optionally) degrees_y, using the time numpy array for 
+        time delta information.
+
+        Numpy arrays time, degrees_x, and degrees_y must all be 1D arrays of the same
+        length.
+        
+        If both degrees_x and degrees_y are provided, then the euclidian distance
+        between each set of points is calculated and used in the velocity calculation.
+
+        time must be in seconds.msec units, while degrees_x and degrees_y are expected
+        to be in visual degrees. If the position traces are in pixel coordinate space,
+        use the VisualAngleCalc class to convert the data into degrees.
+        """
+        if degrees_y is None:
+            data=degrees_x
+        else:
+            data=np.sqrt(degrees_x*degrees_x+degrees_y*degrees_y)
+        
+        velocity_between = (data[1:]-data[:-1])/(time[1:]-time[:-1])
+        velocity = (velocity_between[1:]+velocity_between[:-1])/2.0
+        return velocity
+
+
+A full example python script which loaded eye data from an ioDataStore file, 
+calculates the velocity for one trial of the data, and plots the result can be found in the workshop source materials: python_source/data_processing/velocity_accelleration.py
+
+Accelleration Calculation
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Accelleration, or the rate of velocity change over time, can be calculated at follows::
+
+    def calculateAccelleration(time,data_x,data_y=None):
+        """
+        Calculate the accelleration (degrees / second / second) for data points in 
+        degrees_x and (optionally) degrees_y, using the time numpy array for 
+        time delta information.
+        """
+        velocity=calculateVelocity(time,data_x,data_y)
+        accel = calculateVelocity(time[1:-1],velocity)
+        return accel 
+
+A full example python script which loaded eye data from an ioDataStore file, 
+calculates the velocity for one trial of the data, and plots the result can be found in the workshop source materials: python_source/data_processing/velocity_accelleration.py
 
 Example Plots
 ^^^^^^^^^^^^^^

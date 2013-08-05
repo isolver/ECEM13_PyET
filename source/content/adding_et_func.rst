@@ -45,15 +45,15 @@ So now you should have the PsychoPy Coder IDE open and it should look soemthing 
     :height: 450px
     :alt: PsychoPy Coder
     
-Most Basic Eye Tracking Coder Example
+Basic Eye Tracking Coder Example
 ------------------------------------------
 
 .. literalinclude:: ..\..\demos\coder\getting_started\getting_started.py
     :language: python
 
-*******************************
-Using from Builder
-*******************************
+*********************************
+Using an Eye Tracker in Builder
+*********************************
 
 There isn't currently an Eyetracker Component in Builder (I'm sure there will be very soon!) but you can effectively create one yourself using a code component. Remember, these have 5 sections for `Beginning the Experiment`, `Beginning the Routine` (e.g. trial), `Each Frame` of the Routine, `End of the Routine` and `End of the Experiment`.
 
