@@ -24,8 +24,6 @@ import os
 # demo. Here we are selecting the device config that includes the SMI eye tracker.
 #
 config_file_path=os.path.abspath('./SMI_iview_std.yaml')
-print config_file_path
-print
 
 # Load the specified iohub configuration file
 # converting it to a python dict.
