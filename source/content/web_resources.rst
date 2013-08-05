@@ -48,4 +48,6 @@ There's also `Open Sesame` (graphical interface for experiments with some eye-tr
 Python and Eye Tracking
 ~~~~~~~~~~~~~~~~~~~~~~~~ 
 
-Most eyetracker manufacturers provide Python interfaces if yours isn't supported by ioHub (yet) but you won't get the performance benefits of running on a separate CPU core, and if you buy a new eyetracker you'll have to change your code.
+Some eyetracker manufacturers provide general Python interfaces. Many an difficult to use and incomplete ctypes wrappers of their C library. 
+
+If your eye tracker isn't supported by ioHub (yet) and you would like to help make adding support for it happen, contact us! Why learn a different API for each eye tracker manufacturer you have systems from, when you could only need to be using one, psychopy.iohub!

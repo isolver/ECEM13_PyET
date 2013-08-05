@@ -7,13 +7,6 @@
 Overview
 ****************************
 
-The ioHub is designed to solve several issues in experiment involving eyetracking and other high-throughput data collection.
-    * Asynchronous from the stimulus presentation thread so that all hardware polling occurs at a high rate (not synchronised to the frame refresh)
-    * Not only asynchronous but running on a separate core (assuming you have more than one). That means intensive data collection doesn't result in sloppy timing in stimulus presentation
-    * covers a wide range of devices, including a :ref:`commonETinterface` for supported eyetrackers, so when you change eyetracker you don't have to start from scratch with your experiment!
-    * can also save high-throughput data to disk using without impacting either stimulus presentation or data collection
-
-
 * PsychoPy.ioHub is a Python package providing a cross-platform device
   event monitoring and storage framework. 
 * ioHub is free to use and is GPL version 3 licensed.
@@ -28,6 +21,11 @@ The ioHub is designed to solve several issues in experiment involving eyetrackin
     * XInput compatible gamepads
     * Remote ioHub Server instances
     * **Eye Trackers, via the ioHub Common Eye Tracking Interface**
+
+The ioHub is designed to solve several issues in experiments involving eyetracking and other high-throughput data collection.
+    * Asynchronous from the stimulus presentation process so that all hardware polling or callback handling occurs at a high rate. Events are collected and time stamped if necessary regardless of what the experiment is doing (loading images or videos, waiting for the next retrace start, etc.
+    * Not only asynchronous but running on a separate core (assuming you have more than one). That means intensive data collection doesn't result in sloppy timing in stimulus presentation
+    * Can also save high-throughput data to disk using without impacting either stimulus presentation or data collection, and quickly query and access very large data sets.
 
 
 PsychoPy.ioHub MultiProcess Design
@@ -72,52 +70,27 @@ High Level ioHub API Review
 Starting the ioHub Server Process
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-There are two ways to create a PsychoPy experiment which uses the iohub process. Both menthods ultimately give you access to an instance of the 
+There are three ways to create a PsychoPy experiment which uses the iohub process. All approaches ultimately give you access to an instance of the 
 `ioHubConnection Class <http://www.isolver-solutions.com/iohubdocs/iohub/api_and_manual/iohub_process/getting_connected.html#the-iohubconnection-class>`_ 
 for communication and control of the iohub server:
 
-1. Use the `psychopy.iohub.launchHubServer() <http://www.isolver-solutions.com/iohubdocs/iohub/api_and_manual/iohub_process/launchHubServer.html#the-launchhubserver-function>`_ function.
-2. Use the `psychopy.iohub.client.ioHubExperimentRuntime <http://www.isolver-solutions.com/iohubdocs/iohub/api_and_manual/iohub_process/ioHubExperimentRuntime.html#the-iohubexperimentruntime-class>`_, implementing the class's run() method for your experiment's starting python code.
+1. Directly create a `ioHubConnection Class <http://www.isolver-solutions.com/iohubdocs/iohub/api_and_manual/iohub_process/getting_connected.html#the-iohubconnection-class>`_ instance.
+2. Use the `psychopy.iohub.launchHubServer() <http://www.isolver-solutions.com/iohubdocs/iohub/api_and_manual/iohub_process/launchHubServer.html#the-launchhubserver-function>`_ function.
+3. Use the `psychopy.iohub.client.ioHubExperimentRuntime <http://www.isolver-solutions.com/iohubdocs/iohub/api_and_manual/iohub_process/ioHubExperimentRuntime.html#the-iohubexperimentruntime-class>`_, implementing the class's run() method for your experiment's starting python code.
 
-Each approach has pros and cons:
+Each approach has pros and cons depending on the devices being used, whether Coder or Buider is being used for experiment creation, etc.
 
-- Using launchHubServer is quicker when creating an experiment that uses simple devices like the mouse and keyboard. 
-- When using more advanced devices like an eye tracker, using the ioHubExperimentRuntime approach quickly becomes easier to manage, and makes the python code independent of device implementation being used. When using this approach, an understand of the simple file structure expected by the ioHubExperimentRuntime is needed.
- 
-Using launchHubServer() 
-^^^^^^^^^^^^^^^^^^^^^^^^^
+See the `ioHub Getting Connected documentation section <http://www.isolver-solutions.com/iohubdocs/iohub/api_and_manual/iohub_process/getting_connected.html>`_ for  details on each approach.
 
-See the `launchHubServer() documentation <http://www.isolver-solutions.com/iohubdocs/iohub/api_and_manual/iohub_process/launchHubServer.html#the-launchhubserver-function>`_ for function details.
+.. image:: ./getting_connected_page.png
+    :width: 800px
+    :align: center
+    :height: 500px
+    :alt: The ioHub Getting Connected Online Help Page
 
-**Source File:** [workshop_materials_root]python_source/launchHubServer.py
 
-.. literalinclude:: python_source/launchHubServer.py
-    :language: python
-    
-Other examples of using launchHubServer (just change the top line of the python file which calls the launchHubServer function):
-
-* Enabling event saving by defining an experiment code::
-    
-    # Start the ioHub, creating an ioDataStore file for experiment code 'silly_exp', and automatically
-    # creating an automatic session code.
-    #
-    launchHubServer(experiment_code='silly_exp')
-    
-* Enabling event saving and specifying the session code::
- 
-    # Start the ioHub, creating an ioDataStore file for experiment code 'silly_exp', and 
-    # creating a session with code name 's_001_m_42'.
-    #
-    launchHubServer(experiment_code='silly_exp',session_code='s_001_m_42')
-    
-* Enabling event saving and enabling the XInput Gampad Device using all default parameters::
-
-    # Start the ioHub, creating an ioDataStore file for experiment code 'silly_exp', and 
-    # creating a session with code name 's_001_m_42'. Also enable the ioHub XInput Gamepad support.
-    #
-    launchHubServer(experiment_code='silly_exp',
-                    session_code='s_001_m_42',
-                    xinput.Gamepad={})
+An example python script is available at [workshop_materials_root]python_source/launchHubServer.py, which illustrates how to use the launchHubServer() method.
+Several other examples included in the workshop materials illustrate how to use the different connection approaches.
 
 .. _commonETinterface:
 
@@ -188,11 +161,11 @@ ioDataStore File Structure
 Hierchial File Structure and Meta-Data Tables
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-ioDataStore HDF5 File Viewed using the HDFView Apllication
+ioDataStore HDF5 File Viewed using the HDFView Application
 
 .. image:: ./ioDataStore_HDF5_File_Structure.png
     :align: center
-    :alt: ioDataStore HDF5 File Viewed using the HDFView Apllication
+    :alt: ioDataStore HDF5 File Viewed using the HDFView Application
 
 Example Event Table: Monocular Eye Sample Event
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
