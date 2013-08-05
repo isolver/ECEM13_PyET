@@ -3,25 +3,54 @@
 1:00 - 1:40pm: Incorporating Eye tracking into PsychoPy Experiments
 ==========================================================================
 
-To add eyetracking into your study you'll need to set up the config file (this is hardware-dependent), run a calibration routine, and then insert some simple code into your script or Builder experiment.
+To add eyetracking into your study you will generally:
+
+A. Configure ioHub for the eye tracker to be used ( configuration settings are hardware-dependent )
+B. Run the eye tracker setup routine, which will hopefully result in the successful calibration of the ET hardware
+C. Start event reporting for the ET device.
+D. Monitor eye tracker events or status as needed
+E. Inform the eye tracker to stop reporting events.
+F. Close the connection to the ET device.
+
+This can be done by writing Python script and using PsychoPy in the Coder mode,
+or by adding custom python code segments to the Builder Interface using 
+text entry areas that only allow the displaying of 3 or 4 lines of code at once
+since the text areas can not be resized vertically. Fun! 
+(back at ya J).
 
 *******************************
-Config files
+Using an Eye Tracker from Coder
 *******************************
 
-These are yaml files. Aren't they super-simple?!
+For this Section of the Workshop we will use the PsychoPy Coder.
 
-*******************************
-Calibrating your eyetracker
-*******************************
+1. Open the PsychoPy Coder IDE
 
-Something here about the interface to the calib routines
+    #. Start->Programs->PsychoPy2->PsychoPy
 
-*******************************
-Using from Coder
-*******************************
+2. Ensure the IDE is in *Coder* Mode
 
-Some MINIMAL code to get running (like the coder demo but less)
+    #. If title of IDE has *Coder* in it, you are in the Coder View.
+    #. Otherwise, select menu View->Open Coder View.
+    #. Close the Builder View.
+    
+3. Open the the getting_started.py demo script:
+    - Select Menu File->Open
+    - Python file is found in [Worshop Materials Root]\demos\coder\getting_started.py
+    
+So now you should have the PsychoPy Coder IDE open and it should look soemthing like this:
+
+.. image:: ./psychopy_coder.png
+    :width: 422px
+    :align: center
+    :height: 450px
+    :alt: PsychoPy Coder
+    
+Most Basic Eye Tracking Coder Example
+========================================
+
+.. literalinclude:: ..\..\demos\coder\getting_started.py
+    :language: python
 
 *******************************
 Using from Builder
@@ -29,7 +58,7 @@ Using from Builder
 
 There isn't currently an Eyetracker Component in Builder (I'm sure there will be very soon!) but you can effectively create one yourself using a code component. Remember, these have 5 sections for `Beginning the Experiment`, `Beginning the Routine` (e.g. trial), `Each Frame` of the Routine, `End of the Routine` and `End of the Experiment`.
 
-The way we've set up the demos is that they check first whether you've asked for an eye tracker to be used - in `Experiment Settings` we added an entry to the experiment info dialog box called 'Eye tracker'. In the code below, if that is set to be a string that represents a valid yaml config file then we'll have an eyetracker installed and if not we'll revert to using the mouse as before (handy while creating the experiment inyor office!).
+The way we've set up the demos is that they check first whether you've asked for an eye tracker to be used - in `Experiment Settings` we added an entry to the experiment info dialog box called 'Eye tracker'. In the code below, if that is set to be a string that represents a valid yaml config file then we'll have an eyetracker installed and if not we'll revert to using the mouse as before (handy while creating the experiment in your office!).
 
 
 Stroop: 
