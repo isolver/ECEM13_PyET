@@ -60,26 +60,15 @@ io.clearEvents('all')
 
 # While the space key is not pressed
 #
-print "Starting Data Collection..."
+print "Starting Data Collection. Press SPACE key to stop.."
 while not [event for event in keyboard.getEvents(event_type_id=EventConstants.KEYBOARD_PRESS) if event.key == ' ']:
     # wait 1/4 second
     #
     io.wait(0.25)
-<<<<<<< HEAD
 print "Stopped Data Collection." 
-# Space key was pressed, so stop recording from the eye tracker 
-# and disconnect it from the iohub.           
-=======
-    # Lets also get the latest gaze position
-    #
-    gpos=eyetracker.getLastGazePosition()
-    # And print it
-    #
-    print '** CURRENT GAZE POSITION: ',gpos
 
 # Space key was pressed, so stop recording from the eye tracker
 # and disconnect it from the iohub.
->>>>>>> 6b83df98c6801985974e0d2f25d524cbec1d184c
 #
 eyetracker.setRecordingState(False)
 eyetracker.setConnectionState(False)
