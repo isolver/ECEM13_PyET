@@ -32,12 +32,12 @@
         <Param name="startType" val="time (s)" valType="str" updates="None"/>
         <Param name="stopType" val="duration (s)" valType="str" updates="None"/>
         <Param name="startVal" val="0.5" valType="code" updates="None"/>
-        <Param name="saveMouseState" val="on click" valType="str" updates="None"/>
+        <Param name="saveMouseState" val="final" valType="str" updates="None"/>
       </MouseComponent>
       <CodeComponent name="locations">
         <Param name="Begin Experiment" val="" valType="extendedCode" updates="constant"/>
         <Param name="name" val="locations" valType="code" updates="None"/>
-        <Param name="Each Frame" val="maskPos = myMouse.getPos()&#10;print 'pos', maskPos" valType="extendedCode" updates="constant"/>
+        <Param name="Each Frame" val="maskPos = myMouse.getPos()" valType="extendedCode" updates="constant"/>
         <Param name="Begin Routine" val="targetX = random()-0.5&#10;targetY = random()-0.5&#10;distX = random([nDistractors])-0.5&#10;distY = random([nDistractors])-0.5" valType="extendedCode" updates="constant"/>
         <Param name="End Routine" val="trials.addData('targetX',targetX)&#10;trials.addData('targetY',targetY)" valType="extendedCode" updates="constant"/>
         <Param name="End Experiment" val="" valType="extendedCode" updates="constant"/>
@@ -85,23 +85,33 @@
       <CodeComponent name="restOfDistractors">
         <Param name="Begin Experiment" val="" valType="extendedCode" updates="constant"/>
         <Param name="name" val="restOfDistractors" valType="code" updates="None"/>
-        <Param name="Each Frame" val="if distractor.status==STARTED:&#10;    for distN in range(1,nDistractors):&#10;        pos = distX[distN], distY[distN]&#10;        distractor.setPos(pos)&#10;        distractor.draw()" valType="extendedCode" updates="constant"/>
+        <Param name="Each Frame" val="if target.status==STARTED and continueRoutine:&#10;    for distN in range(1,nDistractors):&#10;        pos = distX[distN], distY[distN]&#10;        distractor.setPos(pos)&#10;        distractor.draw()" valType="extendedCode" updates="constant"/>
         <Param name="Begin Routine" val="" valType="extendedCode" updates="constant"/>
         <Param name="End Routine" val="" valType="extendedCode" updates="constant"/>
         <Param name="End Experiment" val="" valType="extendedCode" updates="constant"/>
       </CodeComponent>
       <ApertureComponent name="periphMask">
         <Param name="name" val="periphMask" valType="code" updates="constant"/>
-        <Param name="stopVal" val="10" valType="code" updates="constant"/>
+        <Param name="stopVal" val="" valType="code" updates="constant"/>
         <Param name="durationEstim" val="" valType="code" updates="None"/>
         <Param name="pos" val="maskPos" valType="code" updates="set every frame"/>
         <Param name="startEstim" val="" valType="code" updates="None"/>
         <Param name="units" val="norm" valType="str" updates="None"/>
         <Param name="startType" val="time (s)" valType="str" updates="None"/>
         <Param name="stopType" val="duration (s)" valType="str" updates="None"/>
-        <Param name="startVal" val="0.5" valType="code" updates="None"/>
+        <Param name="startVal" val="0" valType="code" updates="None"/>
         <Param name="size" val="0.2" valType="code" updates="constant"/>
       </ApertureComponent>
+      <StaticComponent name="ISI">
+        <Param name="code" val="" valType="code" updates="None"/>
+        <Param name="name" val="ISI" valType="code" updates="None"/>
+        <Param name="stopVal" val="0.5" valType="code" updates="constant"/>
+        <Param name="durationEstim" val="" valType="code" updates="None"/>
+        <Param name="startEstim" val="" valType="code" updates="None"/>
+        <Param name="startType" val="time (s)" valType="str" updates="None"/>
+        <Param name="stopType" val="duration (s)" valType="str" updates="None"/>
+        <Param name="startVal" val="0.0" valType="code" updates="None"/>
+      </StaticComponent>
     </Routine>
   </Routines>
   <Flow>
