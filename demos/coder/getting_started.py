@@ -85,9 +85,57 @@ devices={u'Display':
                 u'track_eyes': u'RIGHT_EYE'
                 }, 
             u'model_name': u'EYELINK 1000 TOWER'
-            }
-        }
-
+            },
+            
+#        u'eyetracker.hw.smi.iviewx.EyeTracker': 
+#            {
+#            u'name': u'tracker', 
+#            u'stream_events': True, 
+#            u'save_events': True, 
+#            u'monitor_event_types': [u'BinocularEyeSampleEvent', u'FixationStartEvent', u'FixationEndEvent'],
+#            u'calibration': 
+#                {
+#                u'show_validation_accuracy_window': True, 
+#                u'auto_pace': True, 
+#                u'type': u'FIVE_POINTS', 
+#                u'screen_background_color': 20, 
+#                u'pacing_speed': u'FAST', 
+#                u'target_attributes': 
+#                    {
+#                    u'target_inner_color': u'RED', 
+#                    u'target_size': 30, 
+#                    u'target_color': 239
+#                    }, 
+#                u'target_type': u'CIRCLE_TARGET'
+#                }, 
+#            u'network_settings': 
+#                {
+#                u'send_ip_address': u'127.0.0.1', 
+#                u'receive_ip_address': u'127.0.0.1', 
+#                u'send_port': 4444, 
+#                u'receive_port': 5555
+#                }, 
+#            u'device_timer': 
+#                {
+#                u'interval': 0.002
+#                }, 
+#            u'runtime_settings': 
+#                {
+#                u'sampling_rate': 60, 
+#                u'vog_settings': 
+#                    {
+#                    u'pupil_measure_types': u'PUPIL_DIAMETER'
+#                    }, 
+#                u'sample_filtering': 
+#                    {
+#                    u'FILTER_ALL': u'FILTER_OFF'
+#                    }, 
+#                u'track_eyes': u'BINOCULAR_AVERAGED'
+#                }, 
+#            u'model_name': u'REDm',
+#            u'event_buffer_length': 1024, 
+#            }
+    }
 # Now start the ioHub process, passing in the device dictionary defined above.
 #
 io=launchHubServer(**devices)
