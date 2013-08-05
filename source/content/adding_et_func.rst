@@ -13,7 +13,9 @@ E. Inform the eye tracker to stop reporting events.
 F. Close the connection to the ET device.
 
 This can be done by writing Python script and using PsychoPy in the Coder mode,
-or by adding custom python code segments.
+or by adding custom python code segments to the PsychoPy Builder. Support for
+graphically adding eye tracking support and data access from within Builder is 
+expected to occur by end of this year.
 
 *******************************
 Using an Eye Tracker from Coder
@@ -68,22 +70,42 @@ Begin the Experiment
 
 Here we need to import and launch the ioHub server and set up some default values for the rest of the experiment (like how large a window we think is reasonable for fixation to be maintained)::
 
-    maintain_fix_pix_boundary=66.0
-    eyetracker = False #will change if we get one!
+    maintain_fix_pix_boundary=66.0 # pixels
+    eyetracker =False #will change if we get one!
+    
     if expInfo['Eye Tracker']:
-        from psychopy.iohub import launchHubServer,EventConstants
-        io=launchHubServer()
+        from psychopy.iohub import EventConstants,ioHubConnection,load,Loader
+        from psychopy.data import getDateStr
+        
+        # Load the specified iohub configuration file converting it to a python dict.
+        io_config=load(file(expInfo['Eye Tracker'],'r'), Loader=Loader)
+
+        # Add / Update the session code to be unique. Here we use the psychopy getDateStr() function for session code generation
+        session_info=io_config.get('data_store').get('session_info')
+        session_info.update(code="S_%s"%(getDateStr()))
+
+        # Create an ioHubConnection instance, which starts the ioHubProcess, and informs it of the requested devices and their configurations.
+        io=ioHubConnection(io_config)
+
         iokeyboard=io.devices.keyboard
         mouse=io.devices.mouse
-        if io.getDevice('eyetracker'):
-            eyetracker=io.getDevice('eyetracker')
-        display_gaze=False #decide whether to show the current gaze location
-        x,y=0,0 #will be changed later
-
+        if io.getDevice('tracker'):
+            eyetracker=io.getDevice('tracker')
+            
+            # Run the eye tracker setup routine.
+            
+            win.winHandle.minimize()
+            eyetracker.runSetupProcedure()
+            win.winHandle.activate()
+            win.winHandle.maximize()
+            
+        display_gaze=False
+        x,y=0,0
+    
 Notes:
     - We only import ioHub and set it up if it will be needed!
+    - We perform the eye tracker setup procedure.
     - We should create initial values here for things that will be updated during the script (like the current x,y so that other parts of the script won't throw an error if they use them before the first time the true values are determined)
-    - the
     
 Begin the Routine
 ~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -93,9 +115,11 @@ Simple code that runs if the eyetracker exists (remember, that started as False 
     if eyetracker:
         heldFixation = True #unless otherwise
         io.clearEvents('all')
+        eyetracker.setRecordingState(True)
 Notes:
     - at the beginning of the trial we create a variable `heldFixation` and set it to be True. We'll check on each frame if it stays true but this is our default.
     - clearing events means we don't worry what happened before the trial started
+    - we start collecting eye data
 
 Each Frame
 ~~~~~~~~~~~~~~~~
@@ -103,34 +127,44 @@ Each Frame
 Now we need to check whether gaze has strayed outside the valid fixation window. But we'll also check whether the user pressed 'g' and if so we'll toggle the `display_gaze` variable.
 
     if eyetracker:
-    
-        # get /eye tracker gaze/ position 
-        x,y=eyetracker.getPosition()
-        d=np.sqrt(x**2+y**2)
-        if d>maintain_fix_pix_boundary:
-            heldFixation = False #this had a default of True, remember?
-            
         # check for 'g' key press to toggle gaze cursor visibility
         iokeys=iokeyboard.getEvents(EventConstants.KEYBOARD_PRESS)
         for iok in iokeys:
             if iok.key==u'g':
                 display_gaze=not display_gaze
+        # get /eye tracker gaze/ position 
+        gpos=eyetracker.getPosition()
+        if type(gpos) in [list,tuple]:
+            x,y=gpos
+            d=np.sqrt(x**2+y**2)
+            if d>maintain_fix_pix_boundary:
+                heldFixation = False #unless otherwise
+
+Notes:
+    - On each frame we check if the 'g' key has been pressed. If so, we toggle the visibility of a gaze contingent dot.
+    - We get the latest eye tracker gaze position from the iohub. If it is a tuple or list, we know we have valid eye position info.
+    - If we have a valid eye position, we calculate the distance between the center of the screen and the eye position reported. 
+    - If the eye to screan center distance is above threshold, we flag that fixation was not maintained for the trial.
 
 End of Routine
 ~~~~~~~~~~~~~~~~~~~~
 
-This is some simple code at the end of the trial that uses the standard data outputs of PsychoPy - a column will appear in the excel/csv file showing whether fixation was held on each trial::
+This is some simple code at the end of the trial that uses the standard data outputs of PsychoPy - a column will appear in the excel/csv file showing whether fixation was held on each trial. We also stop recording eye data at the end of each trial::
 
     if eyetracker:
+        eyetracker.setRecordingState(False)
         #add eye-track data to data file
         trials.addData("heldFixation", heldFixation)
-        
+            
 End Experiment
 ~~~~~~~~~~~~~~~~~~~~
 
-ioHub runs in a separate process. It's good to shut that down just in case it fails to do so itself!::
+At the end of the experiment we close the connection to the eye tracker. Since ioHub
+runs in a separate process; it's good practice to shut that down just in case it 
+fails to do so itself!::
 
-    if expInfo['Eye Tracker']:
+    if eyetracker:
+        eyetracker.setConnectionState(False)
         io.quit()
 
 Gaze cursor
