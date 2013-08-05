@@ -19,7 +19,7 @@ monitor_devices:
         name: mouse
 
     - Experiment:
-        name: experimentRuntime
+        name: experiment
 
 # SMI iView Config
     - eyetracker.hw.smi.iviewx.EyeTracker:

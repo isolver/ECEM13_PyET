@@ -13,14 +13,36 @@ Demonstrates the ioHub Common EyeTracking Interface core functionality only:
     
 For a more complete example of how to code a more realistic experiment structure
 using CODER, please see the gc_window example in this directory.
-
-Inital Version: August 1st, 2013, Sol Simpson
 """
 
-from psychopy.iohub import EventConstants,ioHubConnection
+from psychopy.iohub import EventConstants,ioHubConnection,load,Loader
+from psychopy.data import getDateStr
 import os
 
-io=ioHubConnection(ioHubConfigAbsPath=os.path.abspath('./SMI_iview_std.yaml'))
+# Specify the iohub device config file to use for the
+# demo. Here we are selecting the device config that includes the SMI eye tracker.
+#
+config_file_path=os.path.abspath('./SMI_iview_std.yaml')
+print config_file_path
+print
+
+# Load the specified iohub configuration file
+# converting it to a python dict.
+#
+io_config=load(file(config_file_path,'r'), Loader=Loader)
+
+# Add / Update the session code to be unique. Here we use the psychopy
+# getDateStr() function for session code generation
+#
+session_info=io_config.get('data_store').get('session_info')
+session_info.update(code="S_{0}".format(getDateStr()))
+print session_info
+print
+print io_config
+# Create an ioHubConnection instance, which starts the ioHubProcess, and
+# informs it of the requested devices and their configurations.
+#        
+io=ioHubConnection(io_config)
 
 keyboard=io.devices.keyboard
 eyetracker=io.devices.tracker
@@ -61,7 +83,7 @@ while not [event for event in keyboard.getEvents(event_type_id=EventConstants.KE
         print latest_event
     # Lets also get the latest gaze position
     #
-    gpos=eyetracker.getPosition()
+    gpos=eyetracker.getLastGazePosition()
     # And print it
     #
     print '** CURRENT GAZE POSITION: ',gpos
