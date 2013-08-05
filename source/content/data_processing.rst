@@ -27,18 +27,49 @@ report position in visual degrees.
 In some cases you may wish to use pixels for the coordinate space in your experiment,
 but convert the eye position data to visual degrees after the data has been collected.
 Examples of this include wanting to use a different pixel to visual degree
-calculation, unknown eye to calibration plane distance during recording, or in
-the case of experiments do not require the head to be fixed, situations where
-the eye to display distance varies over time, and is reported as such by either a
-hear tracking device, or some of the remote eye tracking systems available.
+calculation or having incorrect or unknown eye to calibration plane distance during recording.
+A fanother use case for pixel2degree conversion is when using a remote eye tracker
+with the nead free and moving about. Ssome of the remote eye tracking systems available
+now report the current eye to screen distance for each sample collected, and this
+can be used to calculate visual degrees without using a fixed eye distance for a whole trial.
 
-In situations like the able, using the example code provide here will allow the conversion
+In situations like the above, using the example code provide here will allow the conversion
 of pixel data to angle data; either using a fixed eye to calibration plain distance,
 or a varying distance based on data in an array that is the same length as the 
-pixel position data being processed.
+pixel position data being processed. The relevent section of the example sript
+is::
 
-.. literalinclude:: python_source/data_processing/pixels2angle.py
-    :language: python
+    # Load the ioDataStore data file
+    # ....example code in many of the scripts provided ....
+    #
+    
+    # Provide the necessary display geometry information.
+    # Note that in the future this default information could be read from
+    # the loaded data file so it does not need to be manually entered here.
+    #
+    calibration_area_info=dict(display_size_mm=(500,280.0),
+                               display_res_pix=(1280.0,1024.0),
+                               eye_distance_mm=550.0)
+
+    # Use the VisualAngleCalc class defined in the common_workshop_functions to
+    # generate an object that can convert data from pixel coordinates 
+    # to visual angles based on the supplied calibration / display surface geometry
+    # and eye distance.
+    #                            
+    vac=VisualAngleCalc(**calibration_area_info)
+    
+    # Calculate the visual degree position in x and y for the given pixel position arrays.
+    # If an array of head position data is provided to the pix2deg method,
+    # the degrees data will be calculated for each eye sample useing the head
+    # distance reported for that sample.
+    #  
+    degree_x,degree_y=vac.pix2deg(pix_x,pix_y)
+    
+    # Do as you may with the angle data.
+    # .....
+
+A full python script which loads eye data from a iodataStore file, converts it to degrees,
+and plots the pixel and degree eye position sample traces can be found at python_source/data_processing/pixels2angle.py
 
 Example Plot
 ^^^^^^^^^^^^^^

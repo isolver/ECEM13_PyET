@@ -13,10 +13,7 @@ E. Inform the eye tracker to stop reporting events.
 F. Close the connection to the ET device.
 
 This can be done by writing Python script and using PsychoPy in the Coder mode,
-or by adding custom python code segments to the Builder Interface using 
-text entry areas that only allow the displaying of 3 or 4 lines of code at once
-since the text areas can not be resized vertically. Fun! 
-(back at ya J).
+or by adding custom python code segments.
 
 *******************************
 Using an Eye Tracker from Coder
@@ -36,7 +33,7 @@ For this Section of the Workshop we will use the PsychoPy Coder.
     
 3. Open the the getting_started.py demo script:
     - Select Menu File->Open
-    - Python file is found in [Worshop Materials Root]\demos\coder\getting_started.py
+    - Python file is found in [Worshop Materials Root]\demos\coder\getting_started\getting_started.py
     
 So now you should have the PsychoPy Coder IDE open and it should look soemthing like this:
 
@@ -49,7 +46,7 @@ So now you should have the PsychoPy Coder IDE open and it should look soemthing 
 Most Basic Eye Tracking Coder Example
 ------------------------------------------
 
-.. literalinclude:: ..\..\demos\coder\getting_started.py
+.. literalinclude:: ..\..\demos\coder\getting_started\getting_started.py
     :language: python
 
 *******************************
