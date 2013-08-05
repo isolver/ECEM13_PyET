@@ -132,9 +132,9 @@ See the `Common Eye Tracker Interface API specification <http://www.isolver-solu
 
 .. _ioDataStore:
 
-****************************************
-ioDataStore - saving data
-****************************************
+*************************************************************
+ioDataStore - Saving Event Data and the HDF5 File Structure
+*************************************************************
 
 For relatively small amounts of data you can fetch information from the ioHub while back to the stimulus presentation thread and use PsychoPy's standard data storage facilities. (You would still benefit from the fact that the events had been timestamped by ioHub on collection so it doesn't matter that you only retrieve the data from ioHub once per screen refresh). At other times you might be saving large streams of eye-movement data and you can use ioHub to save the data directly to disk using the HDF5 standardised data format.
 
@@ -176,9 +176,10 @@ Example Event Table Viewed using the HDFView Application
     :align: center
     :alt: Example Event Table Viewed using the HDFView Application   
 
-
+***********************************************************
 Reading Saved Data - the ExperimentDataAccessUtility Class
------------------------------------------------------------------
+***********************************************************
+
 
 * Contains ioHub device event reading functionality
 * Simple event access API
@@ -189,7 +190,10 @@ Reading Saved Data - the ExperimentDataAccessUtility Class
     * Session and Trial IDs
     * Other Variables Calculated at Runtime, e.g. Trial Start and End Times, Stimulus Onset and Offset Times, etc
     * Any Event Attribute Value
-    
+
+Examples of using the ioDataStore Access API
+---------------------------------------------
+
 Open ExperimentDataAccessUtility and explore ioDataStore file structure
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -226,7 +230,7 @@ List Device Event Types Where the Event Count > 0
     
 
 Retrieving Specific Event Fields Grouped by Trial using a Trial Condition Query Selection
-------------------------------------------------------------------------------------------
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 **Source file:** python_source/datastore_examples/access_single_event_table.py
 
