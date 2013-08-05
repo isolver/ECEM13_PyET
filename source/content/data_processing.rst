@@ -6,13 +6,15 @@ Processing Recorded Eye Data
 This section of the workshop will cover some common areas of eye data 
 processing, including: 
 
-1. Pixel to Visual Angle Conversion
-2. Velocity and Accelleration Calculation
-3. Filtering Out Noise
-4. Parsing Eye Sample Data into Eye Events
+1. :ref:`unitCalcs`
+2. :ref:`velocityCalc`
+3. :ref:`filtering`
+4. :ref:`parsingEvents`
+
+.. _unitCalcs:
 
 **************************************
-1. Pixel to Visual Angle Conversion
+Pixel to Visual Angle Conversion
 **************************************
 
 When using PsychoPy and the ioHub the experiment creator can specify that position
@@ -49,14 +51,16 @@ Eye Position Traces in Pixel and Visual Degree Coordinates
     :height: 400px
     :alt: Eye Position Traces in Pixel and Visual Degree Coordinates.
 
+.. _velocityCalc:
+
 ******************************************
-2. Velocity and Accelleration Calculation
+Velocity and Acceleration Calculation
 ******************************************
 
-Velocity and Accelleration are often calculated using eye sample position data
+Velocity and Acceleration are often calculated using eye sample position data
 for use in eye event parsing algorithms (well, parsers based on velocity thresholds at least ;) ).
 Data is converted from pixel to visual degree coordinate space before being
-passed to the velocity and accelleration algorithms.
+passed to the velocity and acceleration algorithms.
 
 .. literalinclude:: python_source/data_processing/velocity_accelleration.py
     :language: python
@@ -70,39 +74,41 @@ Eye Angle Traces with associated XY Velocity and Accelleration Trace
     :width: 700px
     :align: center
     :height: 400px
-    :alt: Eye Angle Traces with associated XY Velocity and Accelleration Trace
+    :alt: Eye Angle Traces with associated XY Velocity and Acceleration Trace
 
 
-Magnified Eye Angle Traces with associated XY Velocity and Accelleration Trace
+Magnified Eye Angle Traces with associated XY Velocity and Acceleration Trace
 
 
 .. image:: ./vel_acc_zoomed.png
     :width: 700px
     :align: center
     :height: 400px
-    :alt: Magnified Eye Angle Traces with associated XY Velocity and Accelleration Trace
+    :alt: Magnified Eye Angle Traces with associated XY Velocity and Acceleration Trace
 
+.. _filtering:
 
 **************************************
-3. Filtering Out Noise
+Filtering Out Noise
 **************************************
 
-
-With any eye tracking system it is often benifitial to filter the sample data
+With any eye tracking system it is often beneficial to filter the sample data
 data recorded device to:
-
-# Reduce high frequency noise from eye position data, possibly increasing precision measures.
-# Decrease velocity and accelleration noise in the eye signal, possibly improving eye event detection (Saccades, Fixations, etc).
+    #. Reduce high-frequency noise from eye position data, possibly increasing precision measures.
+    #. Decrease velocity and acceleration noise in the eye signal, possibly improving eye event detection (Saccades, Fixations, etc).
 
 When using a filtering algorithm on your eye sample data, it is important to consider:
 
 A. What effect does the filter have on the reported characteristics of the 
-occulomotor behaviour. 
-    I. Are small saccades being removed?
-    II. Is the duration, amplitude, peak velocity, or other such properties of saccades being significantly effected?
-    III. Are over shoots to target locations being exagerated?
+occulomotor behaviour:
+
+    #. Are small saccades being removed?
+    #. Is the duration, amplitude, peak velocity, or other such properties of saccades being significantly effected?
+    #. Are over-shoots to target locations being exagerated?
+    
 B. What is the impact of the filter on the overall delay of on-line access to the eye data being reported?
-C. What parameters area adjustable in the filtering algorithm, and what are the *best* settings to use? 
+
+C. What parameters are adjustable in the filtering algorithm, and what are the *best* settings to use? 
 
 There is often no one right answer to the above questions and considerations. The 
 experimental paradigm being run and the way in which the resulting eye data collected will
@@ -175,8 +181,10 @@ Unfiltered vs. Weighted Moving Average Filtered Eye Position Data
     :height: 400px
     :alt: Unfiltered vs. Weighted Moving Average Filtered Eye Position Data 
 
+.. _parsingEvents:
+
 ********************************************
-4. Parsing Eye Sample Data into Eye Events
+Parsing Eye Sample Data into Eye Events
 ********************************************
 
 Content to Be Moved from notebook.

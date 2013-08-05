@@ -47,7 +47,7 @@ So now you should have the PsychoPy Coder IDE open and it should look soemthing 
     :alt: PsychoPy Coder
     
 Most Basic Eye Tracking Coder Example
-========================================
+------------------------------------------
 
 .. literalinclude:: ..\..\demos\coder\getting_started.py
     :language: python

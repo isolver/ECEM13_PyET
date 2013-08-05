@@ -28,7 +28,7 @@ H. Create the final fixation denisity based heat map overlayed on the background
     :language: python
 
 Example Plots
-==============
+------------------
 
 Components used in creating a fixation density based heat map.
 
