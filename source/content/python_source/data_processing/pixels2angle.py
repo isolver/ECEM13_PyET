@@ -21,9 +21,9 @@ USE_RIGHT_EYE=False
 TRIAL_INDEX=1
 # Enter the eye tracker setup used for the data collection.
 #
-calibration_area_info=dict(display_size_mm=(500,280.0),
-                           display_res_pix=(1280.0,1024.0),
-                           eye_distance_mm=550.0)
+calibration_area_info=dict(display_size_mm=(340,280.0),
+                   display_res_pix=(1280.0,1024.0),
+                   eye_distance_mm=590.0)
 
 
 ##### STEP A. #####

@@ -19,9 +19,10 @@ from common_workshop_functions import processSampleEventGaps,VisualAngleCalc,cal
 TRIAL_INDEX=3
 # Enter the eye tracker setup used for the data collection.
 #
-calibration_area_info=dict(display_size_mm=(500,280.0),
-                           display_res_pix=(1280.0,1024.0),
-                           eye_distance_mm=550.0)
+calibration_area_info=dict(display_size_mm=(340,280.0),
+                   display_res_pix=(1280.0,1024.0),
+                   eye_distance_mm=590.0)
+
 
 dataAccessUtil=ExperimentDataAccessUtility('../hdf5_files','remote_data.hdf5', 
                                            experimentCode=None,sessionCodes=[])

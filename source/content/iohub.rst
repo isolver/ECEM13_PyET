@@ -133,7 +133,7 @@ See the `Common Eye Tracker Interface API specification <http://www.isolver-solu
 .. _ioDataStore:
 
 *************************************************************
-ioDataStore - Saving Event Data and the HDF5 File Structure
+ioDataStore - Saving Event Data
 *************************************************************
 
 For relatively small amounts of data you can fetch information from the ioHub while back to the stimulus presentation thread and use PsychoPy's standard data storage facilities. (You would still benefit from the fact that the events had been timestamped by ioHub on collection so it doesn't matter that you only retrieve the data from ioHub once per screen refresh). At other times you might be saving large streams of eye-movement data and you can use ioHub to save the data directly to disk using the HDF5 standardised data format.
@@ -155,12 +155,12 @@ Notable Features
 * Events are retrieved as numpy ndarrays, and can therefore easily and directly be used by packages such as numpy, scipy, and matplotlib.
 * Data Files can be opened and viewed using free HDF5 Viewing tools such as `HDFView` <http://www.hdfgroup.org/hdf-java-html/hdfview/>`_ and `ViTables <http://vitables.org/download/index.html>`_, both of which are open-source, free, and cross-platform.
 
+*************************************
 ioDataStore File Structure
-----------------------------------------------
+*************************************
 
 Hierchial File Structure and Meta-Data Tables
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
+-----------------------------------------------
 ioDataStore HDF5 File Viewed using the HDFView Application
 
 .. image:: ./ioDataStore_HDF5_File_Structure.png
@@ -168,7 +168,7 @@ ioDataStore HDF5 File Viewed using the HDFView Application
     :alt: ioDataStore HDF5 File Viewed using the HDFView Application
 
 Example Event Table: Monocular Eye Sample Event
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+-------------------------------------------------
 
 Example Event Table Viewed using the HDFView Application
 

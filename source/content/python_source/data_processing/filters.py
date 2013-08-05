@@ -14,9 +14,10 @@ from scipy.signal import butter,filtfilt,medfilt
 
 from common_workshop_functions import processSampleEventGaps,VisualAngleCalc,savitzky_golay
 
-calibration_area_info=dict(display_size_mm=(500,280.0),
+calibration_area_info=dict(display_size_mm=(340,280.0),
                            display_res_pix=(1280.0,1024.0),
-                           eye_distance_mm=550.0)
+                           eye_distance_mm=590.0)
+
 
 def filterEyeSamples(filter_type,xpix,ypix,pupil,invalid_data_mask,**kwargs):
     processSampleEventGaps(xpix,ypix,pupil,invalid_data_mask,'linear')        
