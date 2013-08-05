@@ -21,7 +21,7 @@ monitor_devices:
     - Experiment:
         name: experiment
 
-# SMI iView Config
+    # SMI iView Config
     - eyetracker.hw.smi.iviewx.EyeTracker:
         name: tracker
         save_events: True
@@ -29,7 +29,7 @@ monitor_devices:
         device_timer:
             interval: 0.002
         event_buffer_length: 1024
-        monitor_event_types: [ BinocularEyeSampleEvent, FixationStartEvent, FixationEndEvent]
+        monitor_event_types: [BinocularEyeSampleEvent, FixationStartEvent, FixationEndEvent]
         network_settings:
             send_ip_address: 127.0.0.1
             send_port: 4444

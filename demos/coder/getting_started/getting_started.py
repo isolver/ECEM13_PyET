@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+# Script location: ECEM13_PyET\demos\coder\getting_started 
 """
 This source file can be found in demos\coder\getting_started.py
 
@@ -23,8 +24,6 @@ import os
 # demo. Here we are selecting the device config that includes the SMI eye tracker.
 #
 config_file_path=os.path.abspath('./SMI_iview_std.yaml')
-print config_file_path
-print
 
 # Load the specified iohub configuration file
 # converting it to a python dict.
@@ -36,9 +35,7 @@ io_config=load(file(config_file_path,'r'), Loader=Loader)
 #
 session_info=io_config.get('data_store').get('session_info')
 session_info.update(code="S_{0}".format(getDateStr()))
-print session_info
-print
-print io_config
+
 # Create an ioHubConnection instance, which starts the ioHubProcess, and
 # informs it of the requested devices and their configurations.
 #        
@@ -73,14 +70,6 @@ while not [event for event in keyboard.getEvents(event_type_id=EventConstants.KE
     # wait 1/4 second
     #
     io.wait(0.25)
-    # Get any new events from the Eye Tracker
-    #
-    et_events=eyetracker.getEvents()
-    if et_events:
-        # If any events were received, print the last one.
-        #
-        latest_event=et_events[-1]
-        print latest_event
     # Lets also get the latest gaze position
     #
     gpos=eyetracker.getLastGazePosition()
